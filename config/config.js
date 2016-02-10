@@ -27,7 +27,7 @@ var config = {
       name: 'okinawa'
     },
     port: 3001,
-    db: 'mysql://localhost/okinawa-production'
+    db: 'mysql://root@localhost/okinawa-production'
   }
 };
 
