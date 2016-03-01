@@ -2,11 +2,18 @@ doctype html
 html
   head
     meta(charset='utf-8')
-    title cesium
+    title オキナワノイズマップ
     meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no')
     link(rel='stylesheet', href='cesium/Widgets/widgets.css')
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/style.css')
   body
+    audio#acontrol(src="/audio/Kadena_FA18.m4a" controls)
+    button.btn.btn-default.btn-return.btn-sm 戻る
     #cesium.cesium
+    #sv
+    
+    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDB6eGK2LO6h_YT8OSFU_qpDXL2Q6i-vSg&callback=initMap')
     script(src='cesium/Cesium.js')
+    script(src='/js/jquery-2.2.1.min.js')
     script(src='/js/main.js')

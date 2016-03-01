@@ -9,7 +9,9 @@ var config = {
       name: 'okinawa'
     },
     port: 3000,
-    db: 'mysql://root@localhost/okinawa-development'
+    db: 'okinawa-development',
+    username: 'root',
+    password: ''
   },
 
   test: {
@@ -27,7 +29,8 @@ var config = {
       name: 'okinawa'
     },
     port: 3001,
-    db: 'mysql://root@localhost/okinawa-production'
+    db: 'mysql://root@localhost/okinawa-production',
+    password: 'Peace0721'
   }
 };
 
