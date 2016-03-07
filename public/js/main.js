@@ -57,7 +57,7 @@
 
   var wavesurfer = WaveSurfer.create({
     container: '#waveform',
-    waveColor: 'black',
+    waveColor: 'white',
     progressColor: 'white'
   });
   wavesurfer.load('/audio/Kadena_FA18.m4a');
@@ -99,10 +99,19 @@
   	//widgetsInit();
   }
 
+  var redEllipse = viewer.entities.add({
+    position: Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773),
+    name : 'Red ellipse on surface with outline',
+    ellipse : {
+        semiMinorAxis : 25000.0,
+        semiMajorAxis : 30000.0,
+        material : Cesium.Color.RED.withAlpha(0.5),
+        outline : true,
+        outlineColor : Cesium.Color.RED
+    }
+  });
+
   timeSet();
-
-
-
 
   var pinBuilder = new Cesium.PinBuilder();
   var bluePin = viewer.entities.add({
