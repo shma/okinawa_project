@@ -1,37 +1,52 @@
-html, body, #cesium {
+html, body, #cesium{
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  //overflow: hidden;
+  overflow: hidden;
 }
 
 #sv {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-    //overflow: hidden;
-    //display: none;
+width: 100%;
+height: 100%;
+margin: 0;
+padding: 0;
+  //overflow: hidden;
+  //display: none;
 }
 
-
-#acontrol {
+#waveform {
+  width:500px;
+  background-color: rgba(0, 0, 0, 0.5);
   position:absolute;
   bottom:10px;
-  right:10px;
+  left: 0;
+  right: 0;
+  margin: auto;
   z-index: 999;
-  //display:none;
+}
+
+#acontrol {
+position:absolute;
+bottom:10px;
+right:10px;
+z-index: 999;
+//display:none;
 }
 
 .btn-return {
-  position:absolute;
-  bottom:10px;
-  right:330px;
-  z-index: 999;
-
+position:absolute;
+bottom:10px;
+right:330px;
+z-index: 999;
 }
 
+/**
+#intro {
+  //background-color: rgba(0,0,0,0.2);
+  opacity: 0.55;
+}
+**/
 
 a {
   color: #00B7FF; }

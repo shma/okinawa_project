@@ -9,6 +9,32 @@
     saturation: 0,
     gamma: 1
   };
+/**
+  var elem = document.getElementById('cesium');
+  var two = new Two({width:285, height:200}).appendTo(elem);
+  var circle = two.makeCircle(-70, 0, 50);
+  var okinawa_circle = two.makeCircle(70, 0, 100);
+  circle.fill = '#FF8000';
+  circle.stroke = 'orangered';
+
+  okinawa_circle.fill = '#FF8000';
+  okinawa_circle.stroke = 'orangered';
+
+
+  // Groups can take an array of shapes and/or groups.
+  var group = two.makeGroup(circle, okinawa_circle);
+
+  // And have translation, rotation, scale like all shapes.
+  group.translation.set(two.width / 2, two.height / 2);
+  group.rotation = Math.PI;
+  group.scale = 0.75;
+
+  // You can also set the same properties a shape have.
+  group.linewidth = 7;
+
+  two.update();
+
+**/
 
   // 色んな地点を登録
   var viewPointsArray=[];
@@ -29,14 +55,24 @@
   futenmaAudio.volume = 1;
   futenmaAudio.loop = false;
 
+  var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'black',
+    progressColor: 'white'
+  });
+  wavesurfer.load('/audio/Kadena_FA18.m4a');
+  wavesurfer.on('ready', function () {
+  wavesurfer.play();
+});
+
   var sv = new google.maps.StreetViewService();
   var svp = '';
 
   $(function() {
     $('.cesium-widget-credits').css('display', 'none');
-    $('.cesium-viewer-animationContainer').css('display', 'none');
-    $('.cesium-viewer-timelineContainer').css('display', 'none');
-    $('.cesium-viewer-fullscreenContainer').css('display', 'none');
+    //$('.cesium-viewer-animationContainer').css('display', 'none');
+    //$('.cesium-viewer-timelineContainer').css('display', 'none');
+    //$('.cesium-viewer-fullscreenContainer').css('display', 'none');
     $('.cesium-viewer-toolbar').css('display', 'none');
   });
 
