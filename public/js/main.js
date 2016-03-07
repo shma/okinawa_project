@@ -78,6 +78,32 @@
 
   var viewer = new Cesium.Viewer("cesium");
 
+  var startISO = '2015-04-01T00:00:00+09:00';
+  var currentISO = '2015-04-01T00:00:00+09:00';
+  var stopISO = '2016-03-01T00:00:00+09:00';
+  var endISO = '2016-03-01T00:00:00+09:00';
+
+  var clock;
+  function timeSet(){
+  	clock = new Cesium.Clock({
+  		startTime : Cesium.JulianDate.fromIso8601(startISO),
+  		currentTime : Cesium.JulianDate.fromIso8601(currentISO),
+  		stopTime : Cesium.JulianDate.fromIso8601(endISO),
+  		clockRange : Cesium.ClockRange.LOOP_STOP
+  	});
+  	viewer.clock.startTime = clock.startTime;
+  	viewer.clock.stopTime = clock.stopTime;
+  	viewer.clock.currentTime = clock.currentTime;
+  	viewer.clock.multiplier = 604800;
+  	viewer.timeline.zoomTo(viewer.clock.startTime, viewer.clock.stopTime);
+  	//widgetsInit();
+  }
+
+  timeSet();
+
+
+
+
   var pinBuilder = new Cesium.PinBuilder();
   var bluePin = viewer.entities.add({
       id: 1,
