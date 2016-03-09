@@ -9,8 +9,8 @@
     saturation: 0,
     gamma: 1
   };
-/**
-  var elem = document.getElementById('cesium');
+
+  var elem = document.getElementById('intro');
   var two = new Two({width:285, height:200}).appendTo(elem);
   var circle = two.makeCircle(-70, 0, 50);
   var okinawa_circle = two.makeCircle(70, 0, 100);
@@ -34,7 +34,6 @@
 
   two.update();
 
-**/
 
   // 色んな地点を登録
   var viewPointsArray=[];
@@ -42,8 +41,7 @@
   viewPointsArray[1]=new viewPoints("嘉手納基地",34.3927249,132.4524912,0,-60,600);
 
   // Street View上に配置する何か
-  var sound = document.getElementById('acontrol');
-  $("#acontrol").hide();
+  $("#waveform").hide();
   $(".btn-return").hide();
 
   // 音声ファイルの読み込み
@@ -57,61 +55,25 @@
 
   var wavesurfer = WaveSurfer.create({
     container: '#waveform',
-    waveColor: 'white',
-    progressColor: 'white'
+    waveColor: 'black',
+    progressColor: 'white',
+    height:200,
+    normalize: true
   });
-  wavesurfer.load('/audio/Kadena_FA18.m4a');
-  wavesurfer.on('ready', function () {
-  wavesurfer.play();
-});
 
   var sv = new google.maps.StreetViewService();
   var svp = '';
 
   $(function() {
     $('.cesium-widget-credits').css('display', 'none');
-    //$('.cesium-viewer-animationContainer').css('display', 'none');
-    //$('.cesium-viewer-timelineContainer').css('display', 'none');
-    //$('.cesium-viewer-fullscreenContainer').css('display', 'none');
+    $('.cesium-viewer-animationContainer').css('display', 'none');
+    $('.cesium-viewer-timelineContainer').css('display', 'none');
+    $('.cesium-viewer-fullscreenContainer').css('display', 'none');
     $('.cesium-viewer-toolbar').css('display', 'none');
   });
 
   var viewer = new Cesium.Viewer("cesium");
 
-  var startISO = '2015-04-01T00:00:00+09:00';
-  var currentISO = '2015-04-01T00:00:00+09:00';
-  var stopISO = '2016-03-01T00:00:00+09:00';
-  var endISO = '2016-03-01T00:00:00+09:00';
-
-  var clock;
-  function timeSet(){
-  	clock = new Cesium.Clock({
-  		startTime : Cesium.JulianDate.fromIso8601(startISO),
-  		currentTime : Cesium.JulianDate.fromIso8601(currentISO),
-  		stopTime : Cesium.JulianDate.fromIso8601(endISO),
-  		clockRange : Cesium.ClockRange.LOOP_STOP
-  	});
-  	viewer.clock.startTime = clock.startTime;
-  	viewer.clock.stopTime = clock.stopTime;
-  	viewer.clock.currentTime = clock.currentTime;
-  	viewer.clock.multiplier = 604800;
-  	viewer.timeline.zoomTo(viewer.clock.startTime, viewer.clock.stopTime);
-  	//widgetsInit();
-  }
-
-  var redEllipse = viewer.entities.add({
-    position: Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773),
-    name : 'Red ellipse on surface with outline',
-    ellipse : {
-        semiMinorAxis : 25000.0,
-        semiMajorAxis : 30000.0,
-        material : Cesium.Color.RED.withAlpha(0.5),
-        outline : true,
-        outlineColor : Cesium.Color.RED
-    }
-  });
-
-  timeSet();
 
   var pinBuilder = new Cesium.PinBuilder();
   var bluePin = viewer.entities.add({
@@ -125,16 +87,19 @@
   });
 
   var scene = viewer.scene;
-
   viewer.camera.flyTo({
-    destination : Cesium.Cartesian3.fromDegrees(135.8421549, 37.9210939, 5000000.0)
+    destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.9210939, 3600000.0)
   });
+
+  viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json'));
+
 
   setTimeout(function(){
     viewer.camera.flyTo({
-      destination : Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773, 300000.0)
+      destination : Cesium.Cartesian3.fromDegrees(127.9029728, 26.4057773, 200000.0)
     });
-  }, 5000);
+    $("#intro").fadeOut();
+  }, 10000);
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -192,11 +157,13 @@
     setTimeout(function(){
 			console.log('aaaa');
       streetView();
-      $("#acontrol").show();
+      $("#waveform").show();
+      wavesurfer.load('/audio/Kadena_FA18.m4a');
+      wavesurfer.on('ready', function () {
+        wavesurfer.play();
+      });
       $(".btn-return").show();
 
-      sound.currentTime = 0;
-      sound.play();
 		}, 3000);
   }
   var streetViewDiv = document.getElementById("sv");
@@ -237,14 +204,22 @@
 					  });
 				  svp.setOptions(streetViewOptions);
           svp.setVisible(true);
+
+          svp.setOptions({
+              pov: {
+                heading: 140.11,
+                pitch : 30,
+                zoom : 1
+              }
+          });
+
 			  }
 	    }
   );
 
   $(".btn-return").on('click', function() {
-    $("#acontrol").hide();
+    $("#waveform").hide();
     $(".btn-return").hide();
-    sound.pause();
 
     $('#cesium').fadeIn("slow");
     viewer.camera.flyTo({
@@ -252,5 +227,7 @@
     });
   });
 }
+
+
 
 }());

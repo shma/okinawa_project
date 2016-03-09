@@ -8,10 +8,13 @@ html
     link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/style.css')
   body
-    audio#acontrol(src="/audio/Kadena_FA18.m4a" controls)
-    button.btn.btn-default.btn-return.btn-sm 戻る
+    #intro
+      h1 OKINAWA NOISE MAP PROJECT
     #cesium.cesium
+
     #waveform
+      #wavedesc 2016/03/11 オスプレイ
+      button.btn.btn-default.btn-return.btn-sm << back
     #sv
 
     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDB6eGK2LO6h_YT8OSFU_qpDXL2Q6i-vSg&callback=initMap')
