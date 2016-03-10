@@ -37,6 +37,7 @@ html, body, #cesium{
 }
 
 #wavedesc {
+  position:absolute;;
   color: #fff;
   float:right;
   margin:5px;

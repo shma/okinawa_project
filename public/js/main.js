@@ -11,14 +11,14 @@
   };
 
   var elem = document.getElementById('intro');
-  var two = new Two({width:285, height:200}).appendTo(elem);
-  var circle = two.makeCircle(-70, 0, 50);
-  var okinawa_circle = two.makeCircle(70, 0, 100);
-  circle.fill = '#FF8000';
-  circle.stroke = 'orangered';
+  var two = new Two({width:window.innerWidth, height:window.innerHeight}).appendTo(elem);
+  var circle = two.makeCircle(-300, 0, 300);
+  var okinawa_circle = two.makeCircle(300, 0, 90);
+  circle.fill = 'white';
+  circle.stroke = 'white';
 
-  okinawa_circle.fill = '#FF8000';
-  okinawa_circle.stroke = 'orangered';
+  okinawa_circle.fill = 'white';
+  okinawa_circle.stroke = 'white';
 
 
   // Groups can take an array of shapes and/or groups.
@@ -33,7 +33,6 @@
   group.linewidth = 7;
 
   two.update();
-
 
   // 色んな地点を登録
   var viewPointsArray=[];
@@ -69,10 +68,13 @@
     $('.cesium-viewer-animationContainer').css('display', 'none');
     $('.cesium-viewer-timelineContainer').css('display', 'none');
     $('.cesium-viewer-fullscreenContainer').css('display', 'none');
-    $('.cesium-viewer-toolbar').css('display', 'none');
+    //$('.cesium-viewer-toolbar').css('display', 'none');
   });
 
   var viewer = new Cesium.Viewer("cesium");
+
+  var stamenTonerImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[11];
+  viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
 
 
   var pinBuilder = new Cesium.PinBuilder();
@@ -93,11 +95,15 @@
 
   viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json'));
 
-
   setTimeout(function(){
     viewer.camera.flyTo({
-      destination : Cesium.Cartesian3.fromDegrees(127.9029728, 26.4057773, 200000.0)
+      destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.6757773, 100000.0),
+      orientation : {
+                      pitch : Cesium.Math.toRadians(-50.0)
+                    }
     });
+    var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
+    viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
     $("#intro").fadeOut();
   }, 10000);
 
@@ -131,6 +137,7 @@
   handler.setInputAction(
 	function(movement){
 		var billBoard = scene.pick(movement.position);
+    console.log(billBoard);
 		if (billBoard) {
 			flyTo(billBoard);
 		}
@@ -155,7 +162,6 @@
     });
 
     setTimeout(function(){
-			console.log('aaaa');
       streetView();
       $("#waveform").show();
       wavesurfer.load('/audio/Kadena_FA18.m4a');
@@ -169,6 +175,9 @@
   var streetViewDiv = document.getElementById("sv");
   var streetViewPos = {x:0,y:0,x:0};
   var streetViewHeading = 0;
+
+  // 上に向くカウントアップ
+  var c = 0;
 
   function streetView() {
     streetViewDiv.innerHTML = null;
@@ -204,26 +213,93 @@
 					  });
 				  svp.setOptions(streetViewOptions);
           svp.setVisible(true);
-
-          svp.setOptions({
-              pov: {
-                heading: 140.11,
-                pitch : 30,
-                zoom : 1
-              }
-          });
+          setInterval(up, 500);
 
 			  }
 	    }
   );
 
+  var up = function() {
+    console.log('aaaa');
+    if (c == 0) {
+      svp.setOptions({
+        pov: {
+          heading: 140.11,
+          pitch : 5,
+          zoom : 1
+        }
+      });
+    }
+    if (c == 1) {
+      svp.setOptions({
+        pov: {
+          heading: 140.11,
+          pitch : 10,
+          zoom : 1
+        }
+      });
+    }
+    if (c == 2) {
+      svp.setOptions({
+        pov: {
+          heading: 140.11,
+          pitch : 15,
+          zoom : 1
+        }
+      });
+    }
+    if (c == 3) {
+      svp.setOptions({
+        pov: {
+          heading: 140.11,
+          pitch : 15,
+          zoom : 1
+        }
+      });
+    }
+    if (c == 4) {
+      svp.setOptions({
+        pov: {
+          heading: 140.11,
+          pitch : 20,
+          zoom : 1
+        }
+      });
+    }
+    if (c == 5) {
+      svp.setOptions({
+        pov: {
+          heading: 140.11,
+          pitch : 25,
+          zoom : 1
+        }
+      });
+    }
+    if (c == 6) {
+      svp.setOptions({
+        pov: {
+          heading: 140.11,
+          pitch : 30,
+          zoom : 1
+        }
+      });
+    }
+    c++;
+  }
+
   $(".btn-return").on('click', function() {
+    c = 0;
+    clearInterval(up);
     $("#waveform").hide();
     $(".btn-return").hide();
 
     $('#cesium').fadeIn("slow");
+    wavesurfer.pause();
     viewer.camera.flyTo({
-      destination : Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773, 300000.0)
+      destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.6757773, 100000.0),
+      orientation : {
+                      pitch : Cesium.Math.toRadians(-50.0)
+                    }
     });
   });
 }
