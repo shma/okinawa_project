@@ -10,29 +10,7 @@
     gamma: 1
   };
 
-  var elem = document.getElementById('intro');
-  var two = new Two({width:window.innerWidth, height:window.innerHeight}).appendTo(elem);
-  var circle = two.makeCircle(-300, 0, 300);
-  var okinawa_circle = two.makeCircle(300, 0, 90);
-  circle.fill = 'white';
-  circle.stroke = 'white';
 
-  okinawa_circle.fill = 'white';
-  okinawa_circle.stroke = 'white';
-
-
-  // Groups can take an array of shapes and/or groups.
-  var group = two.makeGroup(circle, okinawa_circle);
-
-  // And have translation, rotation, scale like all shapes.
-  group.translation.set(two.width / 2, two.height / 2);
-  group.rotation = Math.PI;
-  group.scale = 0.75;
-
-  // You can also set the same properties a shape have.
-  group.linewidth = 7;
-
-  two.update();
 
   // 色んな地点を登録
   var viewPointsArray=[];
@@ -90,7 +68,34 @@
 
   var scene = viewer.scene;
   viewer.camera.flyTo({
-    destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.9210939, 3600000.0)
+    destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.9210939, 3600000.0),
+    complete : function() {
+           setTimeout(function() {
+             var elem = document.getElementById('intro');
+             var two = new Two({width:window.innerWidth, height:window.innerHeight}).appendTo(elem);
+             var circle = two.makeCircle(-300, 0, 300);
+             var okinawa_circle = two.makeCircle(300, 0, 90);
+             circle.fill = 'white';
+             circle.stroke = 'white';
+
+             okinawa_circle.fill = 'white';
+             okinawa_circle.stroke = 'white';
+
+
+             // Groups can take an array of shapes and/or groups.
+             var group = two.makeGroup(circle, okinawa_circle);
+
+             // And have translation, rotation, scale like all shapes.
+             group.translation.set(two.width / 2, two.height / 2);
+             group.rotation = Math.PI;
+             group.scale = 0.75;
+
+             // You can also set the same properties a shape have.
+             group.linewidth = 7;
+
+             two.update();
+           }, 1000);
+       }
   });
 
   viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json'));
@@ -104,7 +109,8 @@
     });
     var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
     viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
-    $("#intro").fadeOut();
+
+    $("#intro").fadeOut("slow");
   }, 10000);
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
