@@ -1,6 +1,9 @@
 (function() {
   "use strict";
 
+
+
+
 　// 明るさなどを設定
   var viewModel = {
     brightness: 2.0,
@@ -71,6 +74,12 @@
     destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.9210939, 3600000.0),
     complete : function() {
            setTimeout(function() {
+             $("#circle")
+               .delay(1000).velocity({r: 200})
+
+             $("#circle_okinawa")
+               .delay(1000).velocity({r: 30})
+             /**
              var elem = document.getElementById('intro');
              var two = new Two({width:window.innerWidth, height:window.innerHeight}).appendTo(elem);
              var circle = two.makeCircle(-300, 0, 300);
@@ -94,6 +103,7 @@
              group.linewidth = 7;
 
              two.update();
+             **/
            }, 1000);
        }
   });
@@ -145,7 +155,22 @@
 		var billBoard = scene.pick(movement.position);
     console.log(billBoard);
 		if (billBoard) {
-			flyTo(billBoard);
+      viewer.camera.flyTo({
+        destination : Cesium.Cartesian3.fromDegrees(127.748049228273, 26.267786579266, 1000.0),
+
+        complete : function() {
+          viewer.camera.flyTo({
+            destination : Cesium.Cartesian3.fromDegrees(127.767423599308, 26.281077888005, 0.0),
+            orientation : {
+                            pitch : Cesium.Math.toRadians(-50.0)
+                          },
+            complete : function() {
+              flyTo(billBoard);
+            }
+
+            })
+          }
+      });
 		}
 	},
 	Cesium.ScreenSpaceEventType.LEFT_CLICK);
@@ -163,10 +188,11 @@
     var fov = 2 * photoBillBoard.id.fov;
     //cameraPosWC = [viewer.camera.positionWC.x,viewer.camera.positionWC.y,viewer.camera.positionWC.z];
     //cameraOrientation = [viewer.camera.heading,viewer.camera.pitch,viewer.camera.roll,fov];
+/**
     viewer.camera.flyTo({
       destination : Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773, 10.0)
     });
-
+**/
     setTimeout(function(){
       streetView();
       $("#waveform").show();
@@ -176,7 +202,7 @@
       });
       $(".btn-return").show();
 
-		}, 3000);
+		}, 5000);
   }
   var streetViewDiv = document.getElementById("sv");
   var streetViewPos = {x:0,y:0,x:0};
