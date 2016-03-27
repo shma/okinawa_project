@@ -1,9 +1,6 @@
 (function() {
   "use strict";
 
-
-
-
 　// 明るさなどを設定
   var viewModel = {
     brightness: 2.0,
@@ -12,8 +9,6 @@
     saturation: 0,
     gamma: 1
   };
-
-
 
   // 色んな地点を登録
   var viewPointsArray=[];
@@ -49,7 +44,7 @@
     $('.cesium-viewer-animationContainer').css('display', 'none');
     $('.cesium-viewer-timelineContainer').css('display', 'none');
     $('.cesium-viewer-fullscreenContainer').css('display', 'none');
-    //$('.cesium-viewer-toolbar').css('display', 'none');
+    $('.cesium-viewer-toolbar').css('display', 'none');
   });
 
   var viewer = new Cesium.Viewer("cesium");
@@ -61,7 +56,7 @@
   var pinBuilder = new Cesium.PinBuilder();
   var bluePin = viewer.entities.add({
       id: 1,
-      name : '普天間基地',
+      name : '観測点1',
       position : Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773),
       billboard : {
           image : pinBuilder.fromColor(Cesium.Color.ROYALBLUE, 48).toDataURL(),
@@ -70,58 +65,55 @@
   });
 
   var scene = viewer.scene;
+  $("#toptitle").velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
   viewer.camera.flyTo({
-    destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.9210939, 3600000.0),
+    destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.0210939, 5000000.0),
     complete : function() {
            setTimeout(function() {
              $("#circle")
-               .delay(1000).velocity({r: 200})
+               .delay(1000).velocity({r: 200}, { duration: "slow"} ).delay(5000)
+               .velocity({r: 50}, { duration: "slow"})
+               .velocity({complete: function() {$('#percent').text("25%")}})
+               .delay(3000).velocity({opacity: 0})
+
+               $("#desc").delay(1000)
+               .velocity("fadeIn", { duration: 1500 }).delay(3000)
+               .velocity("fadeOut", { duration: 1500 }).velocity({complete: function() {$("#desc").text("その県に約75%の米軍基地が存在しています。")}})
+               .velocity("fadeIn", { duration: 1500 }).delay(1000).velocity("fadeOut", { duration: 3000 })
+
+             $('#circledesc').delay(1000)
+             .velocity("fadeIn", { duration: 1500 }).delay(5000)
+             .velocity("fadeOut", { duration: 3000 })
+
+             $('#okinawa_circle').delay(1000)
+             .velocity("fadeIn", { duration: 1500 }).delay(5000)
+             .velocity("fadeOut", { duration: 3000 })
+
 
              $("#circle_okinawa")
-               .delay(1000).velocity({r: 30})
-             /**
-             var elem = document.getElementById('intro');
-             var two = new Two({width:window.innerWidth, height:window.innerHeight}).appendTo(elem);
-             var circle = two.makeCircle(-300, 0, 300);
-             var okinawa_circle = two.makeCircle(300, 0, 90);
-             circle.fill = 'white';
-             circle.stroke = 'white';
+               .delay(1000).velocity({r: 50}, { duration: "slow"} ).delay(5000).velocity({r: 200, cy:"35%"}, { duration: "slow"} )
+               .velocity({complete: function() {$('#okinawa_percent').text("75%"); console.log("aaaabbb")}}).delay(3000)
+               .velocity({fill: "#ffff00",cx: "50%",  cy:"35%" }, {duration: "slow"})
+               .delay(2000)
+               .velocity({opacity: 0, cy: "80%", r: 50}, {duration: "slow"}).velocity( {complete: function(){ viewer.camera.flyTo({
+                 destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.6757773, 100000.0),
+                 orientation : {
+                                 pitch : Cesium.Math.toRadians(-50.0)
+                               }
+               });
+               var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
+               viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
 
-             okinawa_circle.fill = 'white';
-             okinawa_circle.stroke = 'white';
 
+               $("#intro").fadeOut("slow");
+               $("#head").velocity("fadeIn", { duration: 1500 })}})
 
-             // Groups can take an array of shapes and/or groups.
-             var group = two.makeGroup(circle, okinawa_circle);
-
-             // And have translation, rotation, scale like all shapes.
-             group.translation.set(two.width / 2, two.height / 2);
-             group.rotation = Math.PI;
-             group.scale = 0.75;
-
-             // You can also set the same properties a shape have.
-             group.linewidth = 7;
-
-             two.update();
-             **/
-           }, 1000);
+           }, 2000);
        }
   });
 
+  // 基地の情報をマッピングします
   viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json'));
-
-  setTimeout(function(){
-    viewer.camera.flyTo({
-      destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.6757773, 100000.0),
-      orientation : {
-                      pitch : Cesium.Math.toRadians(-50.0)
-                    }
-    });
-    var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
-    viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
-
-    $("#intro").fadeOut("slow");
-  }, 10000);
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -252,7 +244,6 @@
   );
 
   var up = function() {
-    console.log('aaaa');
     if (c == 0) {
       svp.setOptions({
         pov: {
@@ -335,7 +326,4 @@
     });
   });
 }
-
-
-
 }());
