@@ -49,10 +49,13 @@
       id: 1,
       name : '観測点1',
       position : Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773),
-      billboard : {
-          image : pinBuilder.fromColor(Cesium.Color.ROYALBLUE, 48).toDataURL(),
-          verticalOrigin : Cesium.VerticalOrigin.BOTTOM
-      }
+      type: 'noise',
+      ellipsoid : {
+			  radii : new Cesium.Cartesian3(200.0, 200.0, 200.0),
+			  outline : false,
+			  material : Cesium.Color.RED.withAlpha(0.8)
+		}
+
   });
 
   var scene = viewer.scene;
@@ -138,11 +141,9 @@
     //console.log(movement);
 		var billBoard = scene.pick(movement.position);
 
-    if (billBoard.primitive != undefined) {
-      console.log(billBoard.primitive.id.id);
 
-
-//		if (billBoard) {
+    if (billBoard.id.type == "noise") {
+      console.log(billBoard.id.type);
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(127.748049228273, 26.267786579266, 1000.0),
 
