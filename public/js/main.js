@@ -19,15 +19,6 @@
   $("#waveform").hide();
   $(".btn-return").hide();
 
-  // 音声ファイルの読み込み
-  var kadenaAudio = new Audio("/audio/Kadena_FA18.m4a");
-  kadenaAudio.volume = 1;
-  kadenaAudio.loop = false;
-
-  var futenmaAudio = new Audio("/audio/Futenma_Osprey1230.m4a");
-  futenmaAudio.volume = 1;
-  futenmaAudio.loop = false;
-
   var wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'black',
@@ -36,6 +27,7 @@
     normalize: true
   });
 
+  // Street Viewを設定する変数
   var sv = new google.maps.StreetViewService();
   var svp = '';
 
@@ -51,7 +43,6 @@
 
   var stamenTonerImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[11];
   viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
-
 
   var pinBuilder = new Cesium.PinBuilder();
   var bluePin = viewer.entities.add({
@@ -144,9 +135,14 @@
   var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
   handler.setInputAction(
 	function(movement){
+    //console.log(movement);
 		var billBoard = scene.pick(movement.position);
-    console.log(billBoard);
-		if (billBoard) {
+
+    if (billBoard.primitive != undefined) {
+      console.log(billBoard.primitive.id.id);
+
+
+//		if (billBoard) {
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(127.748049228273, 26.267786579266, 1000.0),
 
@@ -164,8 +160,7 @@
           }
       });
 		}
-	},
-	Cesium.ScreenSpaceEventType.LEFT_CLICK);
+	},　Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   function flyTo(photoBillBoard) {
     var photoFov = 2 * photoBillBoard.id.fov;
