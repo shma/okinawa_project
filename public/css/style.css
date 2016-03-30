@@ -44,6 +44,9 @@ svg {
   height: 100%;
   z-index: 999; }
 
+.head_logo {
+  font-size: 32px; }
+
 #intro h1 {
   color: #fff;
   text-align: center; }

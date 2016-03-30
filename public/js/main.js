@@ -40,17 +40,14 @@
   var scene = viewer.scene;
 
 
-
-
-
-  $("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  $("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  $("#toptitle").delay(14000).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
+  //$("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  //$("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
   .velocity({complete: function() {
     $("#intro").fadeOut();
     $("#head").velocity("fadeIn", { duration: 1500 });
     viewer.camera.flyTo({
-      destination : Cesium.Cartesian3.fromDegrees(140.9029728, 27.6757773, 1600000.0),
+      destination : Cesium.Cartesian3.fromDegrees(135.9029728, 24.6757773, 1600000.0),
       orientation : {
                      pitch : Cesium.Math.toRadians(-50.0)
                     },
@@ -85,7 +82,7 @@
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED,
-                               pixelSize : 10,
+                               pixelSize : 5,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -97,7 +94,7 @@
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED,
-                               pixelSize : 10,
+                               pixelSize : 5,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -109,7 +106,7 @@
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED,
-                               pixelSize : 10,
+                               pixelSize : 5,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -121,7 +118,7 @@
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED,
-                               pixelSize : 10,
+                               pixelSize : 5,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -133,7 +130,7 @@
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED,
-                               pixelSize : 10,
+                               pixelSize : 5,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -145,7 +142,7 @@
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED,
-                               pixelSize : 10,
+                               pixelSize : 5,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -158,7 +155,7 @@
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED,
-                               pixelSize : 10,
+                               pixelSize : 5,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -175,13 +172,13 @@
 
   // 色んな地点を登録
   var viewPointsArray=[];
-  viewPointsArray[0]=new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858,127.7739129,0,-60,600);
-  viewPointsArray[1]=new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817,127.7403736,0,-60,200);
-  viewPointsArray[2]=new viewPoints("オキナワ・サウンドデータ３（新城・ヘリ）", 26.2853835,127.7721311,0,-60,600);
-  viewPointsArray[3]=new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498,127.7717827,0,-60,200);
-  viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,0,-60,600);
-  viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,0,-60,600);
-  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,0,-60,600);
+  viewPointsArray[0]=new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858,127.7739129,-160.0,-20,0);
+  viewPointsArray[1]=new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817,127.7403736,70,-20,0);
+  viewPointsArray[2]=new viewPoints("オキナワ・サウンドデータ３（新城・ヘリ）", 26.2853835,127.7721311,-140.0,-20,0);
+  viewPointsArray[3]=new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498,127.7717827,-140.0,-20,0);
+  viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,90.0,-20,0);
+  viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,90.0,-20,0);
+  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,40.0,-20.0,0);
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -221,10 +218,10 @@
         destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
         complete : function() {
           viewer.camera.flyTo({
-            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
+            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 200.0),
             orientation : {
-              direction : new Cesium.Cartesian3(-0.04231243104240401, -0.20123236049443421, -0.97862924300734),
-              up : new Cesium.Cartesian3(-0.47934589305293746, -0.8553216253114552, 0.1966022179118339)
+              heading : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].heading),
+              pitch : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].pitch),
             },
             complete : function() {
               flyTo(billBoard);
