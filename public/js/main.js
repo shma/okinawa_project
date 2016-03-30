@@ -205,15 +205,9 @@
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(127.748049228273, 26.267786579266, 1000.0),
         complete : function() {
-          viewer.camera.flyTo({
-            destination : Cesium.Cartesian3.fromDegrees(127.767423599308, 26.281077888005, 0.0),
-            orientation : {
-                            pitch : Cesium.Math.toRadians(-50.0)
-                          },
-            complete : function() {
+
               flyTo(billBoard);
-            }
-          })
+
         }
       });
 		}
@@ -223,6 +217,7 @@
     var photoFov = 2 * photoBillBoard.id.fov;
     var position = photoBillBoard.id.position._value;
     streetViewPos = position;
+
     var heading = photoBillBoard.id.heading;
      streetViewHeading = heading;
     var pitch = photoBillBoard.id.pitch;
@@ -231,7 +226,7 @@
     //var description = photoBillBoard.id._description._value;
     var fov = 2 * photoBillBoard.id.fov;
 
-    setTimeout(function(){
+//    setTimeout(function(){
       streetView();
       $("#waveform").show();
       wavesurfer.load('/audio/Kadena_FA18.m4a');
@@ -239,8 +234,9 @@
         wavesurfer.play();
       });
       $(".btn-return").show();
-		}, 5000);
+//		}, 5000);
   }
+
   var streetViewDiv = document.getElementById("sv");
   var streetViewPos = {x:0,y:0,x:0};
   var streetViewHeading = 0;
