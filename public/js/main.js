@@ -10,10 +10,7 @@
     gamma: 1
   };
 
-  // 色んな地点を登録
-  var viewPointsArray=[];
-  viewPointsArray[0]=new viewPoints("普天間基地",34.39548333333333,132.4535916666667,0,-60,200);
-  viewPointsArray[1]=new viewPoints("嘉手納基地",34.3927249,132.4524912,0,-60,600);
+
 
   // Street View上に配置する何か
   $("#waveform").hide();
@@ -46,9 +43,9 @@
 
 
 
-  $("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  $("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  $("#toptitle").delay(14000).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
+  //$("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  //$("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
   .velocity({complete: function() {
     $("#intro").fadeOut();
     $("#head").velocity("fadeIn", { duration: 1500 });
@@ -81,8 +78,9 @@
                     }));
 
                     viewer.entities.add({
-                          id: 1,
+                          id: 0,
                           name : 'オキナワ・サウンドデータ1（道の駅かでな）',
+                          file : '20121127_Kaneda_FA18.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677858),
                           type: 'noise',
                           point : {
@@ -92,8 +90,9 @@
                            }
                     });
                     viewer.entities.add({
-                          id: 2,
+                          id: 1,
                           name : 'オキナワ・サウンドデータ２（森川公園）',
+                          file : '20121128_Morikawa_CH53.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7403736, 26.2704817),
                           type: 'noise',
                           point : {
@@ -103,8 +102,9 @@
                            }
                     });
                     viewer.entities.add({
-                          id: 3,
+                          id: 2,
                           name : 'オキナワ・サウンドデータ３（新城・ヘリ）',
+                          file : '20151124_Arashiro_CH53.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7721311, 26.2853835),
                           type: 'noise',
                           point : {
@@ -114,8 +114,9 @@
                            }
                     });
                     viewer.entities.add({
-                          id: 4,
+                          id: 3,
                           name : 'オキナワ・サウンドデータ４（新城・オスプレイMV22）',
+                          file : '20151124_Arashiro_MV22.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7717827, 26.2856498),
                           type: 'noise',
                           point : {
@@ -125,8 +126,9 @@
                            }
                     });
                     viewer.entities.add({
-                          id: 5,
+                          id: 4,
                           name : 'オキナワ・サウンドデータ５（砂辺、子供１）',
+                          file : '20160105_Kadena_Child1.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7411702, 26.3546692),
                           type: 'noise',
                           point : {
@@ -136,8 +138,9 @@
                            }
                     });
                     viewer.entities.add({
-                          id: 6,
+                          id: 5,
                           name : 'オキナワ・サウンドデータ６（砂辺、子供２）',
+                          file : '20160105_Kadena_Child2.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7434518, 26.3539902),
                           type: 'noise',
                           point : {
@@ -148,8 +151,9 @@
                     });
 
                     viewer.entities.add({
-                          id: 7,
+                          id: 6,
                           name : 'オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）',
+                          file : '20160105_Ueojana_MV22.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7400556, 26.2631028),
                           type: 'noise',
                           point : {
@@ -168,6 +172,16 @@
        }
     });
   }})
+
+  // 色んな地点を登録
+  var viewPointsArray=[];
+  viewPointsArray[0]=new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858,127.7739129,0,-60,600);
+  viewPointsArray[1]=new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817,127.7403736,0,-60,200);
+  viewPointsArray[2]=new viewPoints("オキナワ・サウンドデータ３（新城・ヘリ）", 26.2853835,127.7721311,0,-60,600);
+  viewPointsArray[3]=new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498,127.7717827,0,-60,200);
+  viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,0,-60,600);
+  viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,0,-60,600);
+  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,0,-60,600);
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -201,13 +215,21 @@
 		var billBoard = scene.pick(movement.position);
 
     if (billBoard.id.type == "noise") {
-      console.log(billBoard.id.type);
+      var position = billBoard.id.position._value;
+
       viewer.camera.flyTo({
-        destination : Cesium.Cartesian3.fromDegrees(127.748049228273, 26.267786579266, 1000.0),
+        destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
         complete : function() {
-
+          viewer.camera.flyTo({
+            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
+            orientation : {
+              direction : new Cesium.Cartesian3(-0.04231243104240401, -0.20123236049443421, -0.97862924300734),
+              up : new Cesium.Cartesian3(-0.47934589305293746, -0.8553216253114552, 0.1966022179118339)
+            },
+            complete : function() {
               flyTo(billBoard);
-
+            }
+          })
         }
       });
 		}
@@ -226,15 +248,14 @@
     //var description = photoBillBoard.id._description._value;
     var fov = 2 * photoBillBoard.id.fov;
 
-//    setTimeout(function(){
       streetView();
+      $("#wavedesc").text(photoBillBoard.id.name);
       $("#waveform").show();
-      wavesurfer.load('/audio/Kadena_FA18.m4a');
+      wavesurfer.load('/audio/'+ photoBillBoard.id.file);
       wavesurfer.on('ready', function () {
         wavesurfer.play();
       });
       $(".btn-return").show();
-//		}, 5000);
   }
 
   var streetViewDiv = document.getElementById("sv");
