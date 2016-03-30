@@ -40,23 +40,11 @@
   });
 
   var viewer = new Cesium.Viewer("cesium");
-  //var stamenTonerImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[11];
-  //viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
-
-  var pinBuilder = new Cesium.PinBuilder();
-  var bluePin = viewer.entities.add({
-      id: 1,
-      name : '観測点1',
-      position : Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773),
-      type: 'noise',
-      point : {
-           color : Cesium.Color.RED,
-           pixelSize : 10,
-           translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-       }
-  });
-
   var scene = viewer.scene;
+
+
+
+
 
   $("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
   $("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
@@ -90,7 +78,88 @@
                           stroke: Cesium.Color.AQUA,
                           fill: Cesium.Color.AQUA.withAlpha(0.5),
                           strokeWidth: 3
-                      }));
+                    }));
+
+                    viewer.entities.add({
+                          id: 1,
+                          name : 'オキナワ・サウンドデータ1（道の駅かでな）',
+                          position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677858),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED,
+                               pixelSize : 10,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                    });
+                    viewer.entities.add({
+                          id: 2,
+                          name : 'オキナワ・サウンドデータ２（森川公園）',
+                          position : Cesium.Cartesian3.fromDegrees(127.7403736, 26.2704817),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED,
+                               pixelSize : 10,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                    });
+                    viewer.entities.add({
+                          id: 3,
+                          name : 'オキナワ・サウンドデータ３（新城・ヘリ）',
+                          position : Cesium.Cartesian3.fromDegrees(127.7721311, 26.2853835),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED,
+                               pixelSize : 10,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                    });
+                    viewer.entities.add({
+                          id: 4,
+                          name : 'オキナワ・サウンドデータ４（新城・オスプレイMV22）',
+                          position : Cesium.Cartesian3.fromDegrees(127.7717827, 26.2856498),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED,
+                               pixelSize : 10,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                    });
+                    viewer.entities.add({
+                          id: 5,
+                          name : 'オキナワ・サウンドデータ５（砂辺、子供１）',
+                          position : Cesium.Cartesian3.fromDegrees(127.7411702, 26.3546692),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED,
+                               pixelSize : 10,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                    });
+                    viewer.entities.add({
+                          id: 6,
+                          name : 'オキナワ・サウンドデータ６（砂辺、子供２）',
+                          position : Cesium.Cartesian3.fromDegrees(127.7434518, 26.3539902),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED,
+                               pixelSize : 10,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                    });
+
+                    viewer.entities.add({
+                          id: 7,
+                          name : 'オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）',
+                          position : Cesium.Cartesian3.fromDegrees(127.7400556, 26.2631028),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED,
+                               pixelSize : 10,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                    });
+
+
                   }
                  });
                }
@@ -99,8 +168,6 @@
        }
     });
   }})
-
-
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -146,9 +213,8 @@
             complete : function() {
               flyTo(billBoard);
             }
-
-            })
-          }
+          })
+        }
       });
 		}
 	},　Cesium.ScreenSpaceEventType.LEFT_CLICK);
@@ -164,13 +230,7 @@
     var photoUrl = photoBillBoard.id.photoUrl;
     //var description = photoBillBoard.id._description._value;
     var fov = 2 * photoBillBoard.id.fov;
-    //cameraPosWC = [viewer.camera.positionWC.x,viewer.camera.positionWC.y,viewer.camera.positionWC.z];
-    //cameraOrientation = [viewer.camera.heading,viewer.camera.pitch,viewer.camera.roll,fov];
-/**
-    viewer.camera.flyTo({
-      destination : Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773, 10.0)
-    });
-**/
+
     setTimeout(function(){
       streetView();
       $("#waveform").show();
@@ -179,7 +239,6 @@
         wavesurfer.play();
       });
       $(".btn-return").show();
-
 		}, 5000);
   }
   var streetViewDiv = document.getElementById("sv");
@@ -223,8 +282,8 @@
 					  });
 				  svp.setOptions(streetViewOptions);
           svp.setVisible(true);
+          c = 0;
           setInterval(up, 500);
-
 			  }
 	    }
   );
