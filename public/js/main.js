@@ -43,9 +43,9 @@
 
 
 
-  //$("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  //$("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
+  $("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#toptitle").delay(14000).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
   .velocity({complete: function() {
     $("#intro").fadeOut();
     $("#head").velocity("fadeIn", { duration: 1500 });
