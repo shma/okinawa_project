@@ -54,28 +54,25 @@
            pixelSize : 10,
            translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
        }
-       /**
-      ellipsoid : {
-        //translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e8, 0.0),
-			  radii : new Cesium.Cartesian3(200.0, 200.0, 200.0),
-			  outline : false,
-			  material : Cesium.Color.RED.withAlpha(0.8)
-		}**/
-
   });
 
   var scene = viewer.scene;
-  $("#toptitle").velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
-  viewer.camera.flyTo({
-    destination : Cesium.Cartesian3.fromDegrees(140.9029728, 27.6757773, 1600000.0),
-    orientation : {
-                   pitch : Cesium.Math.toRadians(-50.0)
-                 },
-    //destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.0210939, 5000000.0),
-    complete : function() {
+
+  $("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#toptitle").delay(14000).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
+  .velocity({complete: function() {
+    $("#intro").fadeOut();
+    $("#head").velocity("fadeIn", { duration: 1500 });
+    viewer.camera.flyTo({
+      destination : Cesium.Cartesian3.fromDegrees(140.9029728, 27.6757773, 1600000.0),
+      orientation : {
+                     pitch : Cesium.Math.toRadians(-50.0)
+                    },
+      complete : function() {
            setTimeout(function() {
              viewer.camera.flyTo({
-               duration: 10,
+               duration: 5,
                destination : Cesium.Cartesian3.fromDegrees(127.9029728, 15.6757773, 1600000.0),
                orientation : {
                               pitch : Cesium.Math.toRadians(-50.0)
@@ -87,54 +84,22 @@
                                  pitch : Cesium.Math.toRadians(-50.0)
                                },
                   complete: function() {
-                      viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json'));
+                    // 基地の情報をマッピングします
+
+                    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json', {
+                          stroke: Cesium.Color.AQUA,
+                          fill: Cesium.Color.AQUA.withAlpha(0.5),
+                          strokeWidth: 3
+                      }));
                   }
                  });
                }
              });
-             /**
-             $("#circle")
-               .delay(1000).velocity({r: 200}, { duration: "slow"} ).delay(5000)
-               .velocity({r: 50}, { duration: "slow"})
-               .velocity({complete: function() {$('#percent').text("25%")}})
-               .delay(3000).velocity({opacity: 0})
-
-               $("#desc").delay(1000)
-               .velocity("fadeIn", { duration: 1500 }).delay(3000)
-               .velocity("fadeOut", { duration: 1500 }).velocity({complete: function() {$("#desc").text("その県に約75%の米軍基地が存在しています。")}})
-               .velocity("fadeIn", { duration: 1500 }).delay(1000).velocity("fadeOut", { duration: 3000 })
-
-             $('#circledesc').delay(1000)
-             .velocity("fadeIn", { duration: 1500 }).delay(5000)
-             .velocity("fadeOut", { duration: 3000 })
-
-             $('#okinawa_circle').delay(1000)
-             .velocity("fadeIn", { duration: 1500 }).delay(5000)
-             .velocity("fadeOut", { duration: 3000 })
-             $("#circle_okinawa")
-               .delay(1000).velocity({r: 50}, { duration: "slow"} ).delay(5000).velocity({r: 200, cy:"35%"}, { duration: "slow"} )
-               .velocity({complete: function() {$('#okinawa_percent').text("75%"); console.log("aaaabbb")}}).delay(3000)
-               .velocity({fill: "#ffff00",cx: "50%",  cy:"35%" }, {duration: "slow"})
-               .delay(2000)
-               .velocity({opacity: 0, cy: "80%", r: 50}, {duration: "slow"}).velocity( {complete: function(){
-                 viewer.camera.flyTo({
-                  destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.6757773, 100000.0),
-                  orientation : {
-                                 pitch : Cesium.Math.toRadians(-50.0)
-                               }
-                 });
-               //var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
-               //viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
-              **/
-
-               $("#intro").fadeOut("slow");
-               $("#head").velocity("fadeIn", { duration: 1500 });
-
-           }, 2000);
+           }, 500);
        }
-  });
+    });
+  }})
 
-  // 基地の情報をマッピングします
 
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
