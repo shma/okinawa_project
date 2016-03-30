@@ -40,9 +40,8 @@
   });
 
   var viewer = new Cesium.Viewer("cesium");
-
-  var stamenTonerImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[11];
-  viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
+  //var stamenTonerImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[11];
+  //viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
 
   var pinBuilder = new Cesium.PinBuilder();
   var bluePin = viewer.entities.add({
@@ -50,20 +49,50 @@
       name : '観測点1',
       position : Cesium.Cartesian3.fromDegrees(127.7729728, 26.2857773),
       type: 'noise',
+      point : {
+           color : Cesium.Color.RED,
+           pixelSize : 10,
+           translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+       }
+       /**
       ellipsoid : {
+        //translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e8, 0.0),
 			  radii : new Cesium.Cartesian3(200.0, 200.0, 200.0),
 			  outline : false,
 			  material : Cesium.Color.RED.withAlpha(0.8)
-		}
+		}**/
 
   });
 
   var scene = viewer.scene;
   $("#toptitle").velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
   viewer.camera.flyTo({
-    destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.0210939, 5000000.0),
+    destination : Cesium.Cartesian3.fromDegrees(140.9029728, 27.6757773, 1600000.0),
+    orientation : {
+                   pitch : Cesium.Math.toRadians(-50.0)
+                 },
+    //destination : Cesium.Cartesian3.fromDegrees(135.8421549, 36.0210939, 5000000.0),
     complete : function() {
            setTimeout(function() {
+             viewer.camera.flyTo({
+               duration: 10,
+               destination : Cesium.Cartesian3.fromDegrees(127.9029728, 15.6757773, 1600000.0),
+               orientation : {
+                              pitch : Cesium.Math.toRadians(-50.0)
+                            },
+               complete : function() {
+                 viewer.camera.flyTo({
+                  destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.6757773, 100000.0),
+                  orientation : {
+                                 pitch : Cesium.Math.toRadians(-50.0)
+                               },
+                  complete: function() {
+                      viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json'));
+                  }
+                 });
+               }
+             });
+             /**
              $("#circle")
                .delay(1000).velocity({r: 200}, { duration: "slow"} ).delay(5000)
                .velocity({r: 50}, { duration: "slow"})
@@ -82,32 +111,31 @@
              $('#okinawa_circle').delay(1000)
              .velocity("fadeIn", { duration: 1500 }).delay(5000)
              .velocity("fadeOut", { duration: 3000 })
-
-
              $("#circle_okinawa")
                .delay(1000).velocity({r: 50}, { duration: "slow"} ).delay(5000).velocity({r: 200, cy:"35%"}, { duration: "slow"} )
                .velocity({complete: function() {$('#okinawa_percent').text("75%"); console.log("aaaabbb")}}).delay(3000)
                .velocity({fill: "#ffff00",cx: "50%",  cy:"35%" }, {duration: "slow"})
                .delay(2000)
-               .velocity({opacity: 0, cy: "80%", r: 50}, {duration: "slow"}).velocity( {complete: function(){ viewer.camera.flyTo({
-                 destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.6757773, 100000.0),
-                 orientation : {
+               .velocity({opacity: 0, cy: "80%", r: 50}, {duration: "slow"}).velocity( {complete: function(){
+                 viewer.camera.flyTo({
+                  destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.6757773, 100000.0),
+                  orientation : {
                                  pitch : Cesium.Math.toRadians(-50.0)
                                }
-               });
-               var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
-               viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
-
+                 });
+               //var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
+               //viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
+              **/
 
                $("#intro").fadeOut("slow");
-               $("#head").velocity("fadeIn", { duration: 1500 })}})
+               $("#head").velocity("fadeIn", { duration: 1500 });
 
            }, 2000);
        }
   });
 
   // 基地の情報をマッピングします
-  viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json'));
+
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -138,15 +166,12 @@
   var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
   handler.setInputAction(
 	function(movement){
-    //console.log(movement);
 		var billBoard = scene.pick(movement.position);
-
 
     if (billBoard.id.type == "noise") {
       console.log(billBoard.id.type);
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(127.748049228273, 26.267786579266, 1000.0),
-
         complete : function() {
           viewer.camera.flyTo({
             destination : Cesium.Cartesian3.fromDegrees(127.767423599308, 26.281077888005, 0.0),
