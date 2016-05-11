@@ -72,11 +72,12 @@
                           stroke: Cesium.Color.AQUA,
                           fill: Cesium.Color.AQUA.withAlpha(0.5),
                           strokeWidth: 3
+
                     }));
 
                     viewer.entities.add({
                           id: 0,
-                          name : 'オキナワ・サウンドデータ1（道の駅かでな）',
+                          name : 'November 27, 2012 at 13:30, F15',
                           file : '20121127_Kaneda_FA18.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677858),
                           type: 'noise',
@@ -88,7 +89,7 @@
                     });
                     viewer.entities.add({
                           id: 1,
-                          name : 'オキナワ・サウンドデータ２（森川公園）',
+                          name : 'November 28, 2012 at 16:00',
                           file : '20121128_Morikawa_CH53.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7403736, 26.2704817),
                           type: 'noise',
@@ -100,7 +101,7 @@
                     });
                     viewer.entities.add({
                           id: 2,
-                          name : 'オキナワ・サウンドデータ３（新城・ヘリ）',
+                          name : 'November 24, 2015 at 18:10, CH53',
                           file : '20151124_Arashiro_CH53.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7721311, 26.2853835),
                           type: 'noise',
@@ -112,7 +113,7 @@
                     });
                     viewer.entities.add({
                           id: 3,
-                          name : 'オキナワ・サウンドデータ４（新城・オスプレイMV22）',
+                          name : 'November 24, 2015 at 18:15, MV22',
                           file : '20151124_Arashiro_MV22.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7717827, 26.2856498),
                           type: 'noise',
@@ -124,7 +125,7 @@
                     });
                     viewer.entities.add({
                           id: 4,
-                          name : 'オキナワ・サウンドデータ５（砂辺、子供１）',
+                          name : 'January 5, 2016 at 10:40',
                           file : '20160105_Kadena_Child1.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7411702, 26.3546692),
                           type: 'noise',
@@ -136,7 +137,7 @@
                     });
                     viewer.entities.add({
                           id: 5,
-                          name : 'オキナワ・サウンドデータ６（砂辺、子供２）',
+                          name : 'January 5, 2016 at 10:45',
                           file : '20160105_Kadena_Child2.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7434518, 26.3539902),
                           type: 'noise',
@@ -149,7 +150,7 @@
 
                     viewer.entities.add({
                           id: 6,
-                          name : 'オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）',
+                          name : 'January 5, 2016 at 18:10, MV-22',
                           file : '20160105_Ueojana_MV22.mp3',
                           position : Cesium.Cartesian3.fromDegrees(127.7400556, 26.2631028),
                           type: 'noise',
@@ -213,7 +214,7 @@
 
     if (billBoard.id.type == "noise") {
       var position = billBoard.id.position._value;
-
+      $('.cesium-infoBox').css('display', 'none');
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
         complete : function() {
@@ -233,6 +234,7 @@
 	},　Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
   function flyTo(photoBillBoard) {
+
     var photoFov = 2 * photoBillBoard.id.fov;
     var position = photoBillBoard.id.position._value;
     streetViewPos = position;
@@ -261,6 +263,7 @@
 
   // 上に向くカウントアップ
   var c = 0;
+  var sv_pitch = 0;
 
   function streetView() {
     streetViewDiv.innerHTML = null;
@@ -297,76 +300,24 @@
 				  svp.setOptions(streetViewOptions);
           svp.setVisible(true);
           c = 0;
-          setInterval(up, 500);
+          sv_pitch = 0;
+          setInterval(up, 2000);
 			  }
 	    }
   );
 
+
   var up = function() {
-    if (c == 0) {
+    if (sv_pitch < 30) {
+      sv_pitch = sv_pitch + 5;
       svp.setOptions({
         pov: {
           heading: 140.11,
-          pitch : 5,
+          pitch : sv_pitch,
           zoom : 1
         }
       });
     }
-    if (c == 1) {
-      svp.setOptions({
-        pov: {
-          heading: 140.11,
-          pitch : 10,
-          zoom : 1
-        }
-      });
-    }
-    if (c == 2) {
-      svp.setOptions({
-        pov: {
-          heading: 140.11,
-          pitch : 15,
-          zoom : 1
-        }
-      });
-    }
-    if (c == 3) {
-      svp.setOptions({
-        pov: {
-          heading: 140.11,
-          pitch : 15,
-          zoom : 1
-        }
-      });
-    }
-    if (c == 4) {
-      svp.setOptions({
-        pov: {
-          heading: 140.11,
-          pitch : 20,
-          zoom : 1
-        }
-      });
-    }
-    if (c == 5) {
-      svp.setOptions({
-        pov: {
-          heading: 140.11,
-          pitch : 25,
-          zoom : 1
-        }
-      });
-    }
-    if (c == 6) {
-      svp.setOptions({
-        pov: {
-          heading: 140.11,
-          pitch : 30,
-          zoom : 1
-        }
-      });
-    }
-    c++;
   }
 
   $(".btn-return").on('click', function() {
