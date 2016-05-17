@@ -10,8 +10,6 @@
     gamma: 1
   };
 
-
-
   // Street View上に配置する何か
   $("#waveform").hide();
   $(".btn-return").hide();
@@ -39,10 +37,14 @@
   var viewer = new Cesium.Viewer("cesium");
   var scene = viewer.scene;
 
+  var stamenTonerImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[11];
+  var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
+  viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
 
-  //$("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  //$("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
+
+  $("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#toptitle").delay(15000).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
   .velocity({complete: function() {
     $("#intro").fadeOut();
     $("#head").velocity("fadeIn", { duration: 1500 });
@@ -70,8 +72,8 @@
 
                     viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json', {
                           stroke: Cesium.Color.AQUA,
-                          fill: Cesium.Color.AQUA.withAlpha(0.5),
-                          strokeWidth: 3
+                          fill: Cesium.Color.AQUA.withAlpha(0.2),
+                          strokeWidth: 1
 
                     }));
 
@@ -82,8 +84,8 @@
                           position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677858),
                           type: 'noise',
                           point : {
-                               color : Cesium.Color.RED,
-                               pixelSize : 5,
+                               color : Cesium.Color.RED.withAlpha(0.4),
+                               pixelSize : 20,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -94,8 +96,8 @@
                           position : Cesium.Cartesian3.fromDegrees(127.7403736, 26.2704817),
                           type: 'noise',
                           point : {
-                               color : Cesium.Color.RED,
-                               pixelSize : 5,
+                               color : Cesium.Color.RED.withAlpha(0.4),
+                               pixelSize : 20,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -106,8 +108,8 @@
                           position : Cesium.Cartesian3.fromDegrees(127.7721311, 26.2853835),
                           type: 'noise',
                           point : {
-                               color : Cesium.Color.RED,
-                               pixelSize : 5,
+                            color : Cesium.Color.RED.withAlpha(0.4),
+                            pixelSize : 20,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -118,8 +120,8 @@
                           position : Cesium.Cartesian3.fromDegrees(127.7717827, 26.2856498),
                           type: 'noise',
                           point : {
-                               color : Cesium.Color.RED,
-                               pixelSize : 5,
+                            color : Cesium.Color.RED.withAlpha(0.4),
+                            pixelSize : 20,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -130,8 +132,8 @@
                           position : Cesium.Cartesian3.fromDegrees(127.7411702, 26.3546692),
                           type: 'noise',
                           point : {
-                               color : Cesium.Color.RED,
-                               pixelSize : 5,
+                            color : Cesium.Color.RED.withAlpha(0.4),
+                            pixelSize : 20,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -142,8 +144,8 @@
                           position : Cesium.Cartesian3.fromDegrees(127.7434518, 26.3539902),
                           type: 'noise',
                           point : {
-                               color : Cesium.Color.RED,
-                               pixelSize : 5,
+                            color : Cesium.Color.RED.withAlpha(0.4),
+                            pixelSize : 20,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -155,8 +157,8 @@
                           position : Cesium.Cartesian3.fromDegrees(127.7400556, 26.2631028),
                           type: 'noise',
                           point : {
-                               color : Cesium.Color.RED,
-                               pixelSize : 5,
+                            color : Cesium.Color.RED.withAlpha(0.4),
+                            pixelSize : 20,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                     });
@@ -207,32 +209,6 @@
 	   });
   }
 
-  var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
-  handler.setInputAction(
-	function(movement){
-		var billBoard = scene.pick(movement.position);
-
-    if (billBoard.id.type == "noise") {
-      var position = billBoard.id.position._value;
-      $('.cesium-infoBox').css('display', 'none');
-      viewer.camera.flyTo({
-        destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
-        complete : function() {
-          viewer.camera.flyTo({
-            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 200.0),
-            orientation : {
-              heading : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].heading),
-              pitch : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].pitch),
-            },
-            complete : function() {
-              flyTo(billBoard);
-            }
-          })
-        }
-      });
-		}
-	},　Cesium.ScreenSpaceEventType.LEFT_CLICK);
-
   function flyTo(photoBillBoard) {
 
     var photoFov = 2 * photoBillBoard.id.fov;
@@ -256,6 +232,38 @@
       });
       $(".btn-return").show();
   }
+
+  var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
+  handler.setInputAction(
+	function(movement){
+		var billBoard = scene.pick(movement.position);
+
+    if (billBoard.id.type == "noise") {
+      var position = billBoard.id.position._value;
+      $('.cesium-infoBox').css('display', 'none');
+      viewer.camera.flyTo({
+        destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
+        complete : function() {
+          viewer.camera.flyTo({
+            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 200.0),
+            orientation : {
+              heading : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].heading),
+              pitch : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].pitch),
+            },
+            complete : function() {
+
+              viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
+              setTimeout(function(){flyTo(billBoard)},3000);
+
+
+            }
+          })
+        }
+      });
+		}
+	},　Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+
 
   var streetViewDiv = document.getElementById("sv");
   var streetViewPos = {x:0,y:0,x:0};
@@ -325,6 +333,8 @@
     clearInterval(up);
     $("#waveform").hide();
     $(".btn-return").hide();
+
+    viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
 
     $('#cesium').fadeIn("slow");
     wavesurfer.pause();
