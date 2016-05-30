@@ -7,9 +7,12 @@ html
     link(rel='stylesheet', href='cesium/Widgets/widgets.css')
     link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/colorbox.css')
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
     link(rel='stylesheet', href='/css/style.css')
   body
     #intro
+      #toptitle
+        h1 Okinawa Noise Map
       #desc1
         h1.percent 0.6%
         p Okinawa Prefecture covers only 0.6% of the land in Japan.
@@ -18,21 +21,34 @@ html
         h1.percent 74%
         p But 74% of U.S. military facilities in Japan are in Okinawa.
         p しかし、日本の米軍関連施設の74%は沖縄にあります.
-
-      #toptitle
-        h1 Okinawa Noise Map
+      #desc3
+        h1.percent LISTEN
+        p Now listen to the noise recorded around the bases in Okinawa.
+        p それでは、基地周辺で録音された騒音を聞いてみましょう.
 
     #head
       h3.head_logo Okinawa Noise Map
     #cesium.cesium
 
     #waveform
-      #wavedesc 2016/03/11 オスプレイ
+      #wavedesc
+      #wavedesc_en
       button.btn.btn-default.btn-return.btn-sm << back
     #sv
 
     #foot
-      a.about about
+      .foot-desc
+        p Click red points. Listen with headphones as loud as possible.
+          br
+          赤丸をクリックします. ヘッドフォンでできるだけ大きな音で聞いてください.
+      .foot-content
+        a.about About
+      .foot-content
+        i('class'="fa fa-facebook-official", 'aria-hidden'="true")
+      .foot-content
+        i('class'="fa fa-twitter-square", 'aria-hidden'="true")
+      .foot-content
+        i('class'="fa fa-google-plus-square", 'aria-hidden'="true")
 
     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDB6eGK2LO6h_YT8OSFU_qpDXL2Q6i-vSg&callback=initMap')
     script(src='cesium/Cesium.js')
