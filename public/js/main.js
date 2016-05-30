@@ -10,6 +10,8 @@
     gamma: 1
   };
 
+  $('a.about').colorbox({href:"/about"});
+
   // Street View上に配置する何か
   $("#waveform").hide();
   $(".btn-return").hide();
@@ -42,12 +44,13 @@
   viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
 
 
-  $("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  $("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
-  $("#toptitle").delay(15000).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
+  //$("#desc1").velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  //$("#desc2").delay(7000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 });
+  $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
   .velocity({complete: function() {
     $("#intro").fadeOut();
     $("#head").velocity("fadeIn", { duration: 1500 });
+    $("#foot").velocity("fadeIn", { duration: 1500 });
     viewer.camera.flyTo({
       destination : Cesium.Cartesian3.fromDegrees(135.9029728, 24.6757773, 1600000.0),
       orientation : {
@@ -69,7 +72,7 @@
                                },
                   complete: function() {
                     // 基地の情報をマッピングします
-
+viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
                     viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json', {
                           stroke: Cesium.Color.AQUA,
                           fill: Cesium.Color.AQUA.withAlpha(0.2),
@@ -175,13 +178,13 @@
 
   // 色んな地点を登録
   var viewPointsArray=[];
-  viewPointsArray[0]=new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858,127.7739129,-160.0,-20,0);
-  viewPointsArray[1]=new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817,127.7403736,70,-20,0);
-  viewPointsArray[2]=new viewPoints("オキナワ・サウンドデータ３（新城・ヘリ）", 26.2853835,127.7721311,-140.0,-20,0);
-  viewPointsArray[3]=new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498,127.7717827,-140.0,-20,0);
-  viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,90.0,-20,0);
-  viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,90.0,-20,0);
-  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,40.0,-20.0,0);
+  viewPointsArray[0]=new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858,127.7739129,-160.0,5,0);
+  viewPointsArray[1]=new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817,127.7403736,70,5,0);
+  viewPointsArray[2]=new viewPoints("オキナワ・サウンドデータ３（新城・ヘリ）", 26.2853835,127.7721311,-140.0,5,0);
+  viewPointsArray[3]=new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498,127.7717827,-140.0,5,0);
+  viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,90.0,5,0);
+  viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,90.0,5,0);
+  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,40.0,5,0);
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -238,24 +241,23 @@
 	function(movement){
 		var billBoard = scene.pick(movement.position);
 
+
     if (billBoard.id.type == "noise") {
       var position = billBoard.id.position._value;
       $('.cesium-infoBox').css('display', 'none');
+
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
         complete : function() {
           viewer.camera.flyTo({
-            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 200.0),
+            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 0.0),
             orientation : {
               heading : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].heading),
               pitch : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].pitch),
             },
             complete : function() {
-
-              viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;
-              setTimeout(function(){flyTo(billBoard)},3000);
-
-
+              flyTo(billBoard);
+              //setTimeout(function(){flyTo(billBoard)},3000);
             }
           })
         }
@@ -295,13 +297,13 @@
 				  fadeInOut(svNotAvailable,1);
 				  setTimeout('fadeInOut(svNotAvailable,0)',1500);
 			  } else {
-          $('#cesium').fadeOut("slow");
+          $('#cesium').fadeOut(2800);
 				  svp = new google.maps.StreetViewPanorama(
 					  streetViewDiv,{
 						  position : data.location.latLng,
 						  pov : {
 							  heading : 140.11,
-							  pitch : 3,
+							  pitch : 15,
 							  zoom : 1
 						  }
 					  });
@@ -309,7 +311,7 @@
           svp.setVisible(true);
           c = 0;
           sv_pitch = 0;
-          setInterval(up, 2000);
+          //setInterval(up, 2000);
 			  }
 	    }
   );

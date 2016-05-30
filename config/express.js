@@ -26,6 +26,7 @@ module.exports = function(app, config) {
   app.use(compress());
   app.use(express.static(config.root + '/public'));
   app.use('/cesium', express.static(config.root + '/node_modules/cesium/Build/Cesium/'));
+  
   app.use(methodOverride());
 
   var controllers = glob.sync(config.root + '/app/controllers/*.js');

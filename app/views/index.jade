@@ -6,6 +6,7 @@ html
     meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no')
     link(rel='stylesheet', href='cesium/Widgets/widgets.css')
     link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/colorbox.css')
     link(rel='stylesheet', href='/css/style.css')
   body
     #intro
@@ -30,9 +31,13 @@ html
       button.btn.btn-default.btn-return.btn-sm << back
     #sv
 
+    #foot
+      a.about about
+
     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDB6eGK2LO6h_YT8OSFU_qpDXL2Q6i-vSg&callback=initMap')
     script(src='cesium/Cesium.js')
     script(src='/js/jquery-2.2.1.min.js')
+    script(src='/js/jquery.colorbox-min.js')
     script(src='/js/velocity.min.js')
     script(src='/js/two.min.js')
     script(src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js")

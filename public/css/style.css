@@ -6,6 +6,25 @@ html, body, #cesium {
   padding: 0;
   overflow: hidden; }
 
+#about {
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
+#about_member {
+  text-align:center;
+ }
+
+#about_foot {
+  margin-top: 50px;
+  float: right;
+ }
+
+.about_head{
+  text-align:center;
+
+}
+
 #intro {
   position: absolute;
   width: 100%;
@@ -93,7 +112,7 @@ svg {
 }
 **/
 a {
-  color: #00B7FF; }
+  color: #fff; }
 
 #head {
   position: absolute;
@@ -102,3 +121,10 @@ a {
   z-index: 1000;
   padding: 10px;
   display: none; }
+
+#foot {
+  position: absolute;
+  color: #fff;
+  right: 10px;
+  z-index: 1000;
+  bottom: 10px; }
