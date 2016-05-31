@@ -112,6 +112,14 @@ svg {
 a {
   color: #fff; }
 
+a:hover {
+  color: #fff; }
+
+a:visited {
+  color: #fff; }
+
+
+
 #head {
   position: absolute;
   color: #fff;

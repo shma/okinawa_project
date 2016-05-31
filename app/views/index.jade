@@ -44,11 +44,14 @@ html
       .foot-content
         a.about About
       .foot-content
-        i('class'="fa fa-facebook-official", 'aria-hidden'="true")
+        a('href'='http://www.facebook.com/share.php?u=http://okinawa.noisemap.jp', 'onclick'="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;")
+          i('class'="fa fa-facebook-official", 'aria-hidden'="true")
       .foot-content
-        i('class'="fa fa-twitter-square", 'aria-hidden'="true")
+        a(href='http://twitter.com/share?count=horizontal&original_referer=http://okinawa.noisemap.jp&text=Okinawa Noise Map&', onclick="window.open(this.href, 'TWwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;")
+          i('class'="fa fa-twitter-square", 'aria-hidden'="true")
       .foot-content
-        i('class'="fa fa-google-plus-square", 'aria-hidden'="true")
+        a(href='https://plus.google.com/share?url=http://okinawa.noisemap.jp', onclick="window.open(this.href, 'Gwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;")
+          i('class'="fa fa-google-plus-square", 'aria-hidden'="true")
     #cesium.cesium
 
     #waveform
