@@ -307,7 +307,7 @@
 		} else {
       $('.cesium-infoBox').show();
     }
-	},　Cesium.ScreenSpaceEventType.LEFT_CLICK);
+	},　Cesium.ScreenSpaceEventType.LEFT_DOWN);
 
 
 
