@@ -43,17 +43,13 @@
   var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
   viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
 
-  viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json', {
-        stroke: Cesium.Color.AQUA,
-        fill: Cesium.Color.AQUA.withAlpha(0.2),
-        strokeWidth: 1
-  }));
+
 
   $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
   $("#desc1").delay(6000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 })
   .velocity({complete: function() {
     $("#intro").fadeOut();
-    $("#head").velocity("fadeIn", { duration: 1500 });
+    //$("#head").velocity("fadeIn", { duration: 1500 });
 
     viewer.camera.flyTo({
       destination : Cesium.Cartesian3.fromDegrees(135.9029728, 24.6757773, 1600000.0),
@@ -71,27 +67,36 @@
                complete : function() {
 
                  viewer.camera.flyTo({
-                  destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.8057773, 70000.0),
+                  destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.8057773, 73000.0),
                   orientation : {
                                  pitch : Cesium.Math.toRadians(-50.0)
                                },
                   complete: function() {
-                    $("#intro").fadeIn();
-                    setTimeout(function() {viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;}, 100);
+                    $("#intro").delay(1000).velocity("fadeIn", { duration: 1500 });
 
-                    $("#desc2").velocity("fadeIn", { duration: 1500 }).delay(5000).velocity("fadeOut", { duration: 1500 })
+                    $("#desc2").delay(1000).velocity("fadeIn", { duration: 1500 }).delay(5000).velocity("fadeOut", { duration: 1500 })
                     .velocity({complete: function() {
-                      $("#intro").fadeOut();
+                      $("#intro").velocity("fadeOut", { duration: 2000 });
+                      //$("#intro").fadeOut();
+                      viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json', {
+                            stroke: Cesium.Color.AQUA,
+                            fill: Cesium.Color.AQUA.withAlpha(0.4),
+                            strokeWidth: 1
+                      }));
 
+                      // 基地の情報をマッピングします
+                      $("#intro").delay(5000).velocity("fadeIn", { duration: 1500 }).velocity({complete: function() {
+                        setTimeout(function() {viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;}, 100);
+                      }});
 
-
-                      $("#intro").delay(3000).velocity("fadeIn", { duration: 1500 });
-                      $("#desc3").delay(3000).velocity("fadeIn", { duration: 1500 }).delay(5000).velocity("fadeOut", { duration: 1500 })
+                      $("#desc3").delay(5000).velocity("fadeIn", { duration: 1500 }).delay(5000).velocity("fadeOut", { duration: 1500 })
                       .velocity({complete: function() {
                         $("#intro").fadeOut();
+
                         $("#head").velocity("fadeIn", { duration: 1500 });
                         $("#foot").velocity("fadeIn", { duration: 1500 });
-                        viewer.entities.add({
+                        setTimeout(function() {
+                          viewer.entities.add({
                             id: 0,
                             name : '2012年11月27日18:10録音, 嘉手納, F15戦闘機',
                             name_en: 'recorded 13:30 November 27 2012 at Kadena, F15',
@@ -104,8 +109,8 @@
                                  pixelSize : 20,
                                  translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                              }
-                      });
-                      viewer.entities.add({
+                           });
+                           viewer.entities.add({
                             id: 1,
                             name : '2012年11月28日16:00録音, 森川公園',
                             name_en: 'recorded 16:00 November 28, 2012 at Morikawa Park',
@@ -118,9 +123,9 @@
                                  pixelSize : 20,
                                  translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                              }
-                      });
+                           });
 
-                      viewer.entities.add({
+                           viewer.entities.add({
                             id: 3,
                             name : '2015年11月24日18:15録音, 新城, オスプレイ',
                             name_en : 'recorded 18:15 November 24, 2015 at Arashiro, MV22',
@@ -133,8 +138,8 @@
                               pixelSize : 20,
                                  translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                              }
-                      });
-                      viewer.entities.add({
+                           });
+                           viewer.entities.add({
                             id: 4,
                             name : '2016年1月5日10:40録音, 砂辺',
                             name_en : 'recorded 10:40 January 5, 2016 at Sunabe',
@@ -147,8 +152,8 @@
                               pixelSize : 20,
                                  translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                              }
-                      });
-                      viewer.entities.add({
+                           });
+                           viewer.entities.add({
                             id: 5,
                             name : '2016年1月5日10:50録音, 砂辺',
                             name_en : 'recorded 10:40 January 5, 2016 at Sunabe',
@@ -177,6 +182,8 @@
                                  translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                              }
                       });
+                    }, 2000);
+
                       }});
                     }})
 
@@ -227,7 +234,6 @@
 	   });
   }
 
-
   function flyTo(photoBillBoard) {
 
     var photoFov = 2 * photoBillBoard.id.fov;
@@ -260,7 +266,7 @@
         $('#cesium').fadeIn("slow");
         wavesurfer.pause();
         viewer.camera.flyTo({
-          destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.8057773, 70000.0),
+          destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.8057773, 80000.0),
           orientation : {
                           pitch : Cesium.Math.toRadians(-50.0)
                         }
@@ -281,6 +287,7 @@
       var position = billBoard.id.position._value;
       $('.cesium-infoBox').css('display', 'none');
 
+      console.log("pitch : " + viewPointsArray[billBoard.id.id].pitch);
       viewer.camera.flyTo({
         destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
         complete : function() {

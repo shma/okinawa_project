@@ -45,16 +45,24 @@ html, body, #cesium {
   display: none; }
 
 .percent {
-  font-size: 200px; }
+  font-size: 250px; }
 
 #desc1, #desc2, #desc3 {
   color: #fff;
-  top: 40%;
+  top:27%;
   position: relative;
   text-align: center;
   display: none;
-  font-size: 22px;
+  font-size: 32px;
   display: none; }
+
+/** 右揃えにしたい。
+.desc_p {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: right;
+}
+**/
 
 #toptitle h1 {
   font-size: 120px; }
@@ -133,7 +141,8 @@ a {
 }
 
 .foot-content {
-  margin-right:10px;
+  margin-left:10px;
+  margin-right:0px;
   float: left;
 }
 
