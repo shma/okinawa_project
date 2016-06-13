@@ -194,20 +194,17 @@
              });
        }
     });
-
   }});
-
-
 
   // 色んな地点を登録
   var viewPointsArray=[];
-  viewPointsArray[0]=new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858,127.7739129,75.0,5,0);
-  viewPointsArray[1]=new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817,127.7403736,70,5,0);
-  viewPointsArray[2]=new viewPoints("オキナワ・サウンドデータ３（新城・ヘリ）", 26.2853835,127.7721311,-140.0,5,0);
-  viewPointsArray[3]=new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498,127.7717827,-140.0,5,0);
-  viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,90.0,5,0);
-  viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,90.0,5,0);
-  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,40.0,5,0);
+  viewPointsArray[0]=new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858,127.7739129,190.6,5,0); // OK
+  viewPointsArray[1]=new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817,127.7403736,155.77,5,0);
+  // viewPointsArray[2]=new viewPoints("オキナワ・サウンドデータ３（新城・ヘリ）", 26.2853835,127.7721311,-140.0,5,0);
+  viewPointsArray[3]=new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498,127.7717827,142.19,5,0);
+  viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,259.47,5,0);
+  viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,241.63,5,0);
+  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,107.43,5,0); // OK
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -218,25 +215,7 @@
 	  this.range = _range;
   }
 
-  function changeViewPoint(num, delay) {
-     var newLat = viewPointsArray[num].lat;
-	   var newLng = viewPointsArray[num].lng;
-	   var newHeading = Cesium.Math.toRadians(viewPointsArray[num].heading);
-	   var newPitch = Cesium.Math.toRadians(viewPointsArray[num].pitch);
-	   var newRange = viewPointsArray[num].range;
-	   var center = Cesium.Cartesian3.fromDegrees(newLng, newLat);
-     var boundingSphere = new Cesium.BoundingSphere(center, newRange);
-	   var headingPitchRange = new Cesium.HeadingPitchRange(newHeading, newPitch, newRange);
-     viewer.camera.constrainedAxis = Cesium.Cartesian3.UNIT_Z;
-	   viewer.camera.flyToBoundingSphere(boundingSphere,{
-		   duration : delay,
-		   offset : headingPitchRange,
-		   easingFunction: Cesium.EasingFunction.CUBIC_IN_OUT
-	   });
-  }
-
   function flyTo(photoBillBoard) {
-
     var photoFov = 2 * photoBillBoard.id.fov;
     var position = photoBillBoard.id.position._value;
     streetViewPos = position;
@@ -264,6 +243,7 @@
         $("#waveform").hide();
         $(".btn-return").hide();
 
+        $('#foot').fadeIn("slow");
         $('#cesium').fadeIn("slow");
         wavesurfer.pause();
         viewer.camera.flyTo({
@@ -293,14 +273,13 @@
         destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
         complete : function() {
           viewer.camera.flyTo({
-            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 0.0),
+            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 30.0),
             orientation : {
               heading : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].heading),
               pitch : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].pitch),
             },
             complete : function() {
               flyTo(billBoard);
-              //setTimeout(function(){flyTo(billBoard)},3000);
             }
           })
         }
@@ -344,6 +323,7 @@
 				  setTimeout('fadeInOut(svNotAvailable,0)',1500);
 			  } else {
           $('#cesium').fadeOut(2800);
+          $('#foot').fadeOut(2800);
 
 				  svp = new google.maps.StreetViewPanorama(
 					  streetViewDiv,{
@@ -383,7 +363,7 @@
     $("#waveform").hide();
     $(".btn-return").hide();
 
-
+    $('#foot').fadeIn("slow");
     $('#cesium').fadeIn("slow");
     wavesurfer.pause();
     viewer.camera.flyTo({
