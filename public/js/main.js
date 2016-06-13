@@ -1,6 +1,7 @@
 (function() {
   "use strict";
 
+  Cesium.BingMapsApi.defaultKey = "Ar0B0yEfBTt6pqUyvlE2ARKYOl7wti2Klk04EVMBZE0mA8B5cKcm4ILrZPi2P2bd"
 　// 明るさなどを設定
   var viewModel = {
     brightness: 2.0,
