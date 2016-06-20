@@ -20,12 +20,8 @@ html
     link(rel='stylesheet', href='/css/colorbox.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
     link(rel='stylesheet', href='/css/style.css')
-    script.
-      if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
-        url = '/sp';
-        location.href = url;
-      }
   body
+
     #intro
       #toptitle
         h1 OKINAWA NOISE MAP
@@ -60,7 +56,7 @@ html
           i('class'="fa fa-google-plus-square", 'aria-hidden'="true")
       .foot-content
         a(href='okinawa.noisemap@gmail.com')
-          i.fa.fa-envelope-o(aria-hidden='true')
+          i.fa.fa-bold(aria-hidden='true')
     #cesium.cesium
 
     #waveform

@@ -24,3 +24,12 @@ router.get('/about', function (req, res, next) {
     });
   });
 });
+
+router.get('/sp', function (req, res, next) {
+  db.Article.findAll().then(function (articles) {
+    res.render('sp', {
+      title: 'Generator-Express MVC',
+      articles: articles
+    });
+  });
+});
