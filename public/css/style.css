@@ -10,12 +10,10 @@ html, body, #cesium {
   padding-right: 50px;
   padding-left: 50px; }
 
-#about_member {
-  text-align: center; }
-
 #about_foot {
   margin-top: 50px;
-  float: right; }
+//  float: right; 
+}
 
 .about_head {
   text-align: center; }
@@ -111,14 +109,6 @@ svg {
 
 a {
   color: #fff; }
-
-a:hover {
-  color: #fff; }
-
-a:visited {
-  color: #fff; }
-
-
 
 #head {
   position: absolute;

@@ -8,22 +8,18 @@ html, body, #cesium {
 
 #about {
   padding-right: 50px;
-  padding-left: 50px;
-}
+  padding-left: 50px; }
 
 #about_member {
-  text-align:center;
- }
+//  text-align: center;
+}
 
 #about_foot {
   margin-top: 50px;
-  float: right;
- }
+  float: right; }
 
-.about_head{
-  text-align:center;
-
-}
+.about_head {
+  text-align: center; }
 
 #intro {
   position: absolute;
@@ -39,8 +35,6 @@ html, body, #cesium {
   /*上端を中央に*/
   display: none; }
 
-
-
 #circledesc, #okinawa_circle {
   display: none; }
 
@@ -49,7 +43,7 @@ html, body, #cesium {
 
 #desc1, #desc2, #desc3 {
   color: #fff;
-  top:27%;
+  top: 27%;
   position: relative;
   text-align: center;
   display: none;
@@ -63,7 +57,6 @@ html, body, #cesium {
   text-align: right;
 }
 **/
-
 #toptitle h1 {
   font-size: 120px; }
 
@@ -98,13 +91,11 @@ svg {
 
 #wavedesc {
   color: #fff;
-  //float: right;
   margin: 5px; }
 
 #wavedesc_en {
-    color: #fff;
-    margin: 5px;
-}
+  color: #fff;
+  margin: 5px; }
 
 #acontrol {
   position: absolute;
@@ -118,7 +109,6 @@ svg {
   right: 330px;
   z-index: 999;
   display: none; }
-
 
 a {
   color: #fff; }
@@ -137,19 +127,15 @@ a {
   right: 10px;
   z-index: 1000;
   bottom: 10px;
-  display: none;
-}
+  display: none; }
 
 .foot-content {
-  margin-left:10px;
-  margin-right:0px;
-  float: left;
-}
+  margin-left: 10px;
+  margin-right: 0px;
+  float: left; }
 
 .cesium-infoBox-title {
-  display: none;
-}
+  display: none; }
 
 button.cesium-infoBox-camera {
-  display: none;
-}
+  display: none; }

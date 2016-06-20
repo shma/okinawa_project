@@ -101,7 +101,7 @@
                             id: 0,
                             name : '2012年11月27日18:10録音, 嘉手納, F15戦闘機',
                             name_en: 'recorded 13:30 November 27 2012 at Kadena, F15',
-                            file : '20121127_Kaneda_FA18.mp3',
+                            file : '2012Kaneda_binau.mp3',
                             heading: 190.6,
                             position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677858),
                             type: 'noise',
@@ -115,7 +115,7 @@
                             id: 1,
                             name : '2012年11月28日16:00録音, 森川公園',
                             name_en: 'recorded 16:00 November 28, 2012 at Morikawa Park',
-                            file : '20121128_Morikawa_CH53.mp3',
+                            file : '2012Morikawa_Heli1_binau.mp3',
                             heading: 155.77,
                             position : Cesium.Cartesian3.fromDegrees(127.7403736, 26.2704817),
                             type: 'noise',
@@ -130,7 +130,7 @@
                             id: 3,
                             name : '2015年11月24日18:15録音, 新城, オスプレイ',
                             name_en : 'recorded 18:15 November 24, 2015 at Arashiro, MV22',
-                            file : '20151124_Arashiro_MV22.mp3',
+                            file : '20151124_Arashiro_Osprey2_binau.mp3',
                             heading: 142.19,
                             position : Cesium.Cartesian3.fromDegrees(127.7717827, 26.2856498),
                             type: 'noise',
@@ -142,9 +142,9 @@
                            });
                            viewer.entities.add({
                             id: 4,
-                            name : '2016年1月5日10:40録音, 砂辺',
+                            name : '2016年1月5日10:40録音, 兼久',
                             name_en : 'recorded 10:40 January 5, 2016 at Sunabe',
-                            file : '20160105_Kadena_Child1.mp3',
+                            file : '20160105_Kaneku_binau.mp3',
                             heading: 259.47,
                             position : Cesium.Cartesian3.fromDegrees(127.7411702, 26.3546692),
                             type: 'noise',
@@ -154,26 +154,12 @@
                                  translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                              }
                            });
-                           viewer.entities.add({
-                            id: 5,
-                            name : '2016年1月5日10:50録音, 砂辺',
-                            name_en : 'recorded 10:40 January 5, 2016 at Sunabe',
-                            file : '20160105_Kadena_Child2.mp3',
-                            heading: 241.63,
-                            position : Cesium.Cartesian3.fromDegrees(127.7434518, 26.3539902),
-                            type: 'noise',
-                            point : {
-                              color : Cesium.Color.RED.withAlpha(0.4),
-                              pixelSize : 20,
-                                 translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                             }
-                      });
 
                       viewer.entities.add({
                             id: 6,
                             name : '2016年1月5日18:10録音, 上大謝名, オスプレイ',
                             name_en : 'recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22',
-                            file : '20160105_Ueojana_MV22.mp3',
+                            file : '20160105_Gushi_Osprey_binau.mp3',
                             heading: 107.43,
                             position : Cesium.Cartesian3.fromDegrees(127.7400556, 26.2631028),
                             type: 'noise',
