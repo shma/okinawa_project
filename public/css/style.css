@@ -12,11 +12,19 @@ html, body, #cesium {
 
 #about_foot {
   margin-top: 50px;
-//  float: right; 
+//  float: right;
 }
 
 .about_head {
   text-align: center; }
+
+#sp {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: #fff;
+}
 
 #intro {
   position: absolute;
