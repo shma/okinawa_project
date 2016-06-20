@@ -11,8 +11,11 @@ html, body, #cesium {
   padding-left: 50px; }
 
 #about_foot {
-  margin-top: 50px;
-//  float: right; 
+  margin-top: 30px;
+//  float: right;
+}
+.foot_contact {
+  margin-bottom: 30px;
 }
 
 .about_head {
