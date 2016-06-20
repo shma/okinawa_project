@@ -143,7 +143,7 @@
                            viewer.entities.add({
                             id: 4,
                             name : '2016年1月5日10:40録音, 兼久',
-                            name_en : 'recorded 10:40 January 5, 2016 at Sunabe',
+                            name_en : 'recorded 10:40 January 5, 2016 at Kaneku',
                             file : '20160105_Kaneku_binau.mp3',
                             heading: 259.47,
                             position : Cesium.Cartesian3.fromDegrees(127.7411702, 26.3546692),
@@ -190,7 +190,7 @@
   viewPointsArray[3]=new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498,127.7717827,142.19,5,0);
   viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,259.47,5,0);
   viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,241.63,5,0);
-  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,107.43,5,0); // OK
+  viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,120.43,5,0); // OK
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
@@ -259,7 +259,7 @@
         destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
         complete : function() {
           viewer.camera.flyTo({
-            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 30.0),
+            destination : Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 20.0),
             orientation : {
               heading : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].heading),
               pitch : Cesium.Math.toRadians(viewPointsArray[billBoard.id.id].pitch),
