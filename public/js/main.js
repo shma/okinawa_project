@@ -169,6 +169,20 @@
                                  translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                              }
                       });
+                      viewer.entities.add({
+                            id: 7,
+                            name : '2016年8月9日19:23録音、高江、MV-22 オスプレイ',
+                            name_en : 'recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey',
+                            file : '160809_T009_arakawa.mp3',
+                            heading: 215.29,
+                            position : Cesium.Cartesian3.fromDegrees(128.2426576, 26.6799013),
+                            type: 'noise',
+                            point : {
+                              color : Cesium.Color.RED.withAlpha(0.4),
+                              pixelSize : 20,
+                                 translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                             }
+                      });
                     }, 2000);
 
                       }});
@@ -191,6 +205,7 @@
   viewPointsArray[4]=new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）",26.3546692,127.7411702,259.47,5,0);
   viewPointsArray[5]=new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）",26.3539902,127.7434518,241.63,5,0);
   viewPointsArray[6]=new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）",26.2631028,127.7400556,120.43,5,0); // OK
+  viewPointsArray[7]=new viewPoints("2016年8月9日19:23録音、高江、MV-22 オスプレイ",26.6799013,128.2426576,215.29,5,0); // OK
 
   function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
 	  this.label = _label;
