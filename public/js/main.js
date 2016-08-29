@@ -173,7 +173,7 @@
                             id: 7,
                             name : '2016年8月9日19:23録音、高江、MV-22 オスプレイ',
                             name_en : 'recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey',
-                            file : '160809_T009_arakawa.mp3',
+                            file : '160809-T011_osprey_far.mp3',
                             heading: 215.29,
                             position : Cesium.Cartesian3.fromDegrees(128.2426576, 26.6799013),
                             type: 'noise',
