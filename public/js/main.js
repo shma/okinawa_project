@@ -22,7 +22,7 @@
     waveColor: 'black',
     progressColor: 'white',
     height:200,
-    normalize: true
+
   });
 
   // Street Viewを設定する変数
@@ -101,9 +101,9 @@
                             id: 0,
                             name : '2012年11月27日18:10録音, 嘉手納, F15戦闘機',
                             name_en: 'recorded 13:30 November 27 2012 at Kadena, F15',
-                            file : '2012Kaneda_binau.mp3',
+                            file : '2012_kadena_f15_2.mp3',
                             heading: 190.6,
-                            position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677858),
+                            position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677948),
                             type: 'noise',
                             point : {
                                  color : Cesium.Color.RED.withAlpha(0.4),
@@ -115,9 +115,9 @@
                             id: 1,
                             name : '2012年11月28日16:00録音, 森川公園',
                             name_en: 'recorded 16:00 November 28, 2012 at Morikawa Park',
-                            file : '2012Morikawa_Heli1_binau.mp3',
+                            file : '2012_morikawa_ch46.mp3',
                             heading: 155.77,
-                            position : Cesium.Cartesian3.fromDegrees(127.7403736, 26.2704817),
+                            position : Cesium.Cartesian3.fromDegrees(127.7407946, 26.2713147),
                             type: 'noise',
                             point : {
                                  color : Cesium.Color.RED.withAlpha(0.4),
@@ -130,9 +130,9 @@
                             id: 3,
                             name : '2015年11月24日18:15録音, 新城, オスプレイ',
                             name_en : 'recorded 18:15 November 24, 2015 at Arashiro, MV22',
-                            file : '20151124_Arashiro_Osprey2_binau.mp3',
+                            file : '151124_arashiro_osprey.mp3',
                             heading: 142.19,
-                            position : Cesium.Cartesian3.fromDegrees(127.7717827, 26.2856498),
+                            position : Cesium.Cartesian3.fromDegrees(127.7718912, 26.2857332),
                             type: 'noise',
                             point : {
                               color : Cesium.Color.RED.withAlpha(0.4),
@@ -144,9 +144,9 @@
                             id: 4,
                             name : '2016年1月5日10:40録音, 兼久',
                             name_en : 'recorded 10:40 January 5, 2016 at Kaneku',
-                            file : '20160105_Kaneku_binau.mp3',
+                            file : '160105_kaneku_kodomo.mp3',
                             heading: 259.47,
-                            position : Cesium.Cartesian3.fromDegrees(127.7411702, 26.3546692),
+                            position : Cesium.Cartesian3.fromDegrees(127.7420361, 26.3547976),
                             type: 'noise',
                             point : {
                               color : Cesium.Color.RED.withAlpha(0.4),
@@ -159,9 +159,9 @@
                             id: 6,
                             name : '2016年1月5日18:10録音, 上大謝名, オスプレイ',
                             name_en : 'recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22',
-                            file : '20160105_Gushi_Osprey_binau.mp3',
+                            file : '160105_ueojana_osprey.mp3',
                             heading: 107.43,
-                            position : Cesium.Cartesian3.fromDegrees(127.7400556, 26.2631028),
+                            position : Cesium.Cartesian3.fromDegrees(127.7402643, 26.2629626),
                             type: 'noise',
                             point : {
                               color : Cesium.Color.RED.withAlpha(0.4),
@@ -173,9 +173,9 @@
                             id: 7,
                             name : '2016年8月9日19:23録音、高江、MV-22 オスプレイ',
                             name_en : 'recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey',
-                            file : '160809-T011_osprey_far.mp3',
+                            file : '160809_arakawa_zuku_osprey.mp3',
                             heading: 215.29,
-                            position : Cesium.Cartesian3.fromDegrees(128.2426576, 26.6799013),
+                            position : Cesium.Cartesian3.fromDegrees(128.242844, 26.6799939),
                             type: 'noise',
                             point : {
                               color : Cesium.Color.RED.withAlpha(0.4),
