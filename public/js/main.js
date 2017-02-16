@@ -1,6 +1,8 @@
 (function() {
   "use strict";
 
+  $('a.about').colorbox({href:"/about"});
+
   Cesium.BingMapsApi.defaultKey = "Ar0B0yEfBTt6pqUyvlE2ARKYOl7wti2Klk04EVMBZE0mA8B5cKcm4ILrZPi2P2bd"
 　// 明るさなどを設定
   var viewModel = {
@@ -10,8 +12,6 @@
     saturation: 0,
     gamma: 1
   };
-
-  $('a.about').colorbox({href:"/about"});
 
   // Street View上に配置する何か
   $("#waveform").hide();
@@ -44,10 +44,7 @@
   var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
   viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
 
-
-
-  $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 5000 })
-  $("#desc1").delay(6000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 })
+  $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 2000 })
   .velocity({complete: function() {
     $("#intro").fadeOut();
     //$("#head").velocity("fadeIn", { duration: 1500 });
@@ -58,7 +55,6 @@
                      pitch : Cesium.Math.toRadians(-50.0)
                     },
       complete : function() {
-
              viewer.camera.flyTo({
                duration: 5,
                destination : Cesium.Cartesian3.fromDegrees(127.9029728, 15.6757773, 1600000.0),
@@ -66,130 +62,119 @@
                               pitch : Cesium.Math.toRadians(-50.0)
                             },
                complete : function() {
-
                  viewer.camera.flyTo({
                   destination : Cesium.Cartesian3.fromDegrees(127.9029728, 25.8057773, 73000.0),
                   orientation : {
                                  pitch : Cesium.Math.toRadians(-50.0)
                                },
                   complete: function() {
-                    $("#intro").delay(1000).velocity("fadeIn", { duration: 1500 });
+                    //$("#intro").fadeOut();
+                    viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json', {
+                          stroke: Cesium.Color.AQUA,
+                          fill: Cesium.Color.AQUA.withAlpha(0.4),
+                          strokeWidth: 1
+                    }));
 
-                    $("#desc2").delay(1000).velocity("fadeIn", { duration: 1500 }).delay(5000).velocity("fadeOut", { duration: 1500 })
+                    $("#intro").delay(3000).velocity("fadeIn", { duration: 1500 }).velocity({complete: function() {
+                      setTimeout(function() {viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;}, 100);
+                    }});
+
+                    $("#desc3").delay(3000).velocity("fadeIn", { duration: 1500 }).delay(3000).velocity("fadeOut", { duration: 1500 })
                     .velocity({complete: function() {
-                      $("#intro").velocity("fadeOut", { duration: 2000 });
-                      //$("#intro").fadeOut();
-                      viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json', {
-                            stroke: Cesium.Color.AQUA,
-                            fill: Cesium.Color.AQUA.withAlpha(0.4),
-                            strokeWidth: 1
-                      }));
+                      $("#intro").fadeOut();
 
-                      // 基地の情報をマッピングします
-                      $("#intro").delay(5000).velocity("fadeIn", { duration: 1500 }).velocity({complete: function() {
-                        setTimeout(function() {viewer.baseLayerPicker.viewModel.selectedImagery = normalImagery;}, 100);
-                      }});
-
-                      $("#desc3").delay(5000).velocity("fadeIn", { duration: 1500 }).delay(5000).velocity("fadeOut", { duration: 1500 })
-                      .velocity({complete: function() {
-                        $("#intro").fadeOut();
-
-                        $("#head").velocity("fadeIn", { duration: 1500 });
-                        $("#foot").velocity("fadeIn", { duration: 1500 });
-                        setTimeout(function() {
+                      $("#head").velocity("fadeIn", { duration: 1500 });
+                      $("#foot").velocity("fadeIn", { duration: 1500 });
+                      setTimeout(function() {
                           viewer.entities.add({
-                            id: 0,
-                            name : '2012年11月27日18:10録音, 嘉手納, F15戦闘機',
-                            name_en: 'recorded 13:30 November 27 2012 at Kadena, F15',
-                            file : '2012_kadena_f15_2.mp3',
-                            heading: 190.6,
-                            position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677948),
-                            type: 'noise',
-                            point : {
-                                 color : Cesium.Color.RED.withAlpha(0.4),
-                                 pixelSize : 20,
-                                 translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                             }
-                           });
-                           viewer.entities.add({
-                            id: 1,
-                            name : '2012年11月28日16:00録音, 森川公園',
-                            name_en: 'recorded 16:00 November 28, 2012 at Morikawa Park',
-                            file : '2012_morikawa_ch46.mp3',
-                            heading: 155.77,
-                            position : Cesium.Cartesian3.fromDegrees(127.7407946, 26.2713147),
-                            type: 'noise',
-                            point : {
-                                 color : Cesium.Color.RED.withAlpha(0.4),
-                                 pixelSize : 20,
-                                 translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                             }
-                           });
+                          id: 0,
+                          name : '2012年11月27日18:10録音, 嘉手納, F15戦闘機',
+                          name_en: 'recorded 13:30 November 27 2012 at Kadena, F15',
+                          file : '2012_kadena_f15_2.mp3',
+                          heading: 190.6,
+                          position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677948),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED.withAlpha(0.4),
+                               pixelSize : 20,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                          });
+                          viewer.entities.add({
+                          id: 1,
+                          name : '2012年11月28日16:00録音, 森川公園',
+                          name_en: 'recorded 16:00 November 28, 2012 at Morikawa Park',
+                          file : '2012_morikawa_ch46.mp3',
+                          heading: 155.77,
+                          position : Cesium.Cartesian3.fromDegrees(127.7407946, 26.2713147),
+                          type: 'noise',
+                          point : {
+                               color : Cesium.Color.RED.withAlpha(0.4),
+                               pixelSize : 20,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                          });
 
-                           viewer.entities.add({
-                            id: 3,
-                            name : '2015年11月24日18:15録音, 新城, オスプレイ',
-                            name_en : 'recorded 18:15 November 24, 2015 at Arashiro, MV22',
-                            file : '151124_arashiro_osprey.mp3',
-                            heading: 142.19,
-                            position : Cesium.Cartesian3.fromDegrees(127.7718912, 26.2857332),
-                            type: 'noise',
-                            point : {
-                              color : Cesium.Color.RED.withAlpha(0.4),
-                              pixelSize : 20,
-                                 translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                             }
-                           });
-                           viewer.entities.add({
-                            id: 4,
-                            name : '2016年1月5日10:40録音, 兼久',
-                            name_en : 'recorded 10:40 January 5, 2016 at Kaneku',
-                            file : '160105_kaneku_kodomo.mp3',
-                            heading: 259.47,
-                            position : Cesium.Cartesian3.fromDegrees(127.7420361, 26.3547976),
-                            type: 'noise',
-                            point : {
-                              color : Cesium.Color.RED.withAlpha(0.4),
-                              pixelSize : 20,
-                                 translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                             }
-                           });
+                          viewer.entities.add({
+                          id: 3,
+                          name : '2015年11月24日18:15録音, 新城, オスプレイ',
+                          name_en : 'recorded 18:15 November 24, 2015 at Arashiro, MV22',
+                          file : '151124_arashiro_osprey.mp3',
+                          heading: 142.19,
+                          position : Cesium.Cartesian3.fromDegrees(127.7718912, 26.2857332),
+                          type: 'noise',
+                          point : {
+                            color : Cesium.Color.RED.withAlpha(0.4),
+                            pixelSize : 20,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                          });
+                          viewer.entities.add({
+                          id: 4,
+                          name : '2016年1月5日10:40録音, 兼久',
+                          name_en : 'recorded 10:40 January 5, 2016 at Kaneku',
+                          file : '160105_kaneku_kodomo.mp3',
+                          heading: 259.47,
+                          position : Cesium.Cartesian3.fromDegrees(127.7420361, 26.3547976),
+                          type: 'noise',
+                          point : {
+                            color : Cesium.Color.RED.withAlpha(0.4),
+                            pixelSize : 20,
+                               translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                           }
+                          });
 
-                      viewer.entities.add({
-                            id: 6,
-                            name : '2016年1月5日18:10録音, 上大謝名, オスプレイ',
-                            name_en : 'recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22',
-                            file : '160105_ueojana_osprey.mp3',
-                            heading: 107.43,
-                            position : Cesium.Cartesian3.fromDegrees(127.7402643, 26.2629626),
-                            type: 'noise',
-                            point : {
-                              color : Cesium.Color.RED.withAlpha(0.4),
-                              pixelSize : 20,
-                                 translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                             }
-                      });
-                      viewer.entities.add({
-                            id: 7,
-                            name : '2016年8月9日19:23録音、高江、MV-22 オスプレイ',
-                            name_en : 'recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey',
-                            file : '160809_arakawa_zuku_osprey.mp3',
-                            heading: 215.29,
-                            position : Cesium.Cartesian3.fromDegrees(128.242844, 26.6799939),
-                            type: 'noise',
-                            point : {
-                              color : Cesium.Color.RED.withAlpha(0.4),
-                              pixelSize : 20,
-                                 translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                             }
-                      });
-                    }, 2000);
-
-                      }});
-                    }})
-
-                  }
-                 });
+                          viewer.entities.add({
+                                id: 6,
+                                name : '2016年1月5日18:10録音, 上大謝名, オスプレイ',
+                                name_en : 'recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22',
+                                file : '160105_ueojana_osprey.mp3',
+                                heading: 107.43,
+                                position : Cesium.Cartesian3.fromDegrees(127.7402643, 26.2629626),
+                                type: 'noise',
+                                point : {
+                                  color : Cesium.Color.RED.withAlpha(0.4),
+                                  pixelSize : 20,
+                                     translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                                 }
+                          });
+                          viewer.entities.add({
+                                id: 7,
+                                name : '2016年8月9日19:23録音、高江、MV-22 オスプレイ',
+                                name_en : 'recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey',
+                                file : '160809_arakawa_zuku_osprey.mp3',
+                                heading: 215.29,
+                                position : Cesium.Cartesian3.fromDegrees(128.242844, 26.6799939),
+                                type: 'noise',
+                                point : {
+                                  color : Cesium.Color.RED.withAlpha(0.4),
+                                  pixelSize : 20,
+                                     translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                                 }
+                          });
+                        }, 1000);
+                    }});
+                  }})
                }
              });
        }
@@ -254,7 +239,6 @@
                         }
         });
       });
-
 
       $(".btn-return").show();
   }
