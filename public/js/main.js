@@ -2,21 +2,11 @@
   "use strict";
 
   $('a.about').colorbox({href:"/about"});
-
   Cesium.BingMapsApi.defaultKey = "Ar0B0yEfBTt6pqUyvlE2ARKYOl7wti2Klk04EVMBZE0mA8B5cKcm4ILrZPi2P2bd"
-　// 明るさなどを設定
-  var viewModel = {
-    brightness: 2.0,
-    contrast: 1,
-    hue: 3,
-    saturation: 0,
-    gamma: 1
-  };
 
   // Street View上に配置する何か
   $("#waveform").hide();
   $(".btn-return").hide();
-
   var wavesurfer = WaveSurfer.create({
     container: '#waveform',
     waveColor: 'black',
@@ -46,8 +36,8 @@
 
   $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 2000 })
   .velocity({complete: function() {
+
     $("#intro").fadeOut();
-    //$("#head").velocity("fadeIn", { duration: 1500 });
 
     viewer.camera.flyTo({
       destination : Cesium.Cartesian3.fromDegrees(135.9029728, 24.6757773, 1600000.0),
@@ -274,8 +264,6 @@
     }
 	},　Cesium.ScreenSpaceEventType.LEFT_DOWN);
 
-
-
   var streetViewDiv = document.getElementById("sv");
   var streetViewPos = {x:0,y:0,x:0};
   var streetViewHeading = 0;
@@ -323,7 +311,6 @@
           svp.setVisible(true);
           c = 0;
           sv_pitch = 0;
-          //setInterval(up, 2000);
 			  }
 	    }
   );
