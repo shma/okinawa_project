@@ -4,7 +4,8 @@ html, body, #cesium {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; }
+  overflow: hidden;
+}
 
 #about {
   padding-right: 50px;
@@ -26,18 +27,22 @@ html, body, #cesium {
 
 #toptitle {
   position: relative;
-  /*body要素に対して絶対配置*/
   top: 40%;
-  /*上端を中央に*/
   display: none; }
 
-#circledesc, #okinawa_circle {
-  display: none; }
-
+#toptitle h1 {
+  font-size: 120px; }
 .percent {
   font-size: 250px; }
 
-#desc1, #desc2, #desc3 {
+@media screen and (max-width:767px) {
+#toptitle h1 {
+  font-size: 34px; }
+.percent {
+  font-size: 100px; }
+}
+
+#desc3 {
   color: #fff;
   top: 27%;
   position: relative;
@@ -46,24 +51,24 @@ html, body, #cesium {
   font-size: 32px;
   display: none; }
 
-/** 右揃えにしたい。
-.desc_p {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: right;
-}
-**/
-#toptitle h1 {
-  font-size: 120px; }
-
 svg {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 999; }
 
+
 .head_logo {
-  font-size: 32px; }
+  font-size: 32px;
+  margin-left: 5px;
+}
+@media screen and (max-width:767px) {
+  .head_logo {
+    font-size: 22px;
+    margin-left: 5px;
+  }
+}
+
 
 #intro h1 {
   color: #fff;
@@ -76,7 +81,7 @@ svg {
   padding: 0; }
 
 #waveform {
-  width: 700px;
+  width: 50%;
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   bottom: 10px;
@@ -87,11 +92,37 @@ svg {
 
 #wavedesc {
   color: #fff;
+  font-size:18px;
   margin: 5px; }
 
 #wavedesc_en {
   color: #fff;
+  font-size:18px;
   margin: 5px; }
+
+@media screen and (max-width:767px) {
+  #waveform {
+  width: 90%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 999; }
+
+#wavedesc {
+  color: #fff;
+  font-size:8px;
+  margin: 5px; }
+
+#wavedesc_en {
+  color: #fff;
+  font-size:8px;
+  margin: 5px; }
+}
+
+
 
 #acontrol {
   position: absolute;
@@ -102,9 +133,16 @@ svg {
 .btn-return {
   position: absolute;
   bottom: 10px;
-  right: 330px;
   z-index: 999;
   display: none; }
+
+@media screen and (max-width:767px) {
+  .btn-return {
+  position: absolute;
+  bottom: 10px;
+  z-index: 999;
+  display: none; }
+}
 
 a {
   color: #fff; }
@@ -123,11 +161,30 @@ a {
   right: 10px;
   z-index: 1000;
   bottom: 10px;
+  font-size:18px;
   display: none; }
 
+@media screen and (max-width:767px) {
+  #foot {
+  position: absolute;
+  color: #fff;
+  z-index: 1000;
+  bottom: 10px;
+  margin-left:5px;
+  display: none; }
+
+  .foot-desc p {
+    font-size:10px;
+  }
+
+  .cesium-infoBox-defaultTable {
+    font-size: 10px;
+  }
+}
+
 .foot-content {
-  margin-left: 10px;
-  margin-right: 0px;
+  margin-left: 0px;
+  margin-right: 15px;
   float: left; }
 
 .cesium-infoBox-title {
@@ -135,3 +192,24 @@ a {
 
 button.cesium-infoBox-camera {
   display: none; }
+
+.btn {
+  font-size: 18px;
+}
+
+.btn-link {
+  color: #fff;
+}
+
+.i-about {
+  font-size:22px;
+  margin-top:9px;
+}
+
+a:hover {
+    color: #FFFF00;
+}
+
+.btn-link:hover {
+    color: #FFFF00;
+}

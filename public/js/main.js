@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  $('a.about').colorbox({href:"/about"});
+//  $('a.about').colorbox({href:"/about"});
   Cesium.BingMapsApi.defaultKey = "Ar0B0yEfBTt6pqUyvlE2ARKYOl7wti2Klk04EVMBZE0mA8B5cKcm4ILrZPi2P2bd"
 
   // Street View上に配置する何か
@@ -12,12 +12,28 @@
     waveColor: 'black',
     progressColor: 'white',
     height:200,
-
   });
 
   // Street Viewを設定する変数
   var sv = new google.maps.StreetViewService();
   var svp = '';
+
+  // スマホかどうかを判定する
+  var getDevice = (function(){
+    var ua = navigator.userAgent;
+    if(ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0){
+        return 'sp';
+    }else if(ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0){
+        return 'tab';
+    }else{
+        return 'other';
+    }
+  })();
+
+  var pointsize = 25;
+  if (getDevice == 'sp') {
+    pointsize = 10;
+  }
 
   $(function() {
     $('.cesium-widget-credits').css('display', 'none');
@@ -82,11 +98,11 @@
                           name_en: 'recorded 13:30 November 27 2012 at Kadena, F15',
                           file : '2012_kadena_f15_2.mp3',
                           heading: 190.6,
-                          position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677948),
+                          position : Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677948,300),
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED.withAlpha(0.4),
-                               pixelSize : 20,
+                               pixelSize : pointsize,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                           });
@@ -96,11 +112,11 @@
                           name_en: 'recorded 16:00 November 28, 2012 at Morikawa Park',
                           file : '2012_morikawa_ch46.mp3',
                           heading: 155.77,
-                          position : Cesium.Cartesian3.fromDegrees(127.7407946, 26.2713147),
+                          position : Cesium.Cartesian3.fromDegrees(127.7407946, 26.2713147,300),
                           type: 'noise',
                           point : {
                                color : Cesium.Color.RED.withAlpha(0.4),
-                               pixelSize : 20,
+                               pixelSize : pointsize,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                           });
@@ -111,11 +127,11 @@
                           name_en : 'recorded 18:15 November 24, 2015 at Arashiro, MV22',
                           file : '151124_arashiro_osprey.mp3',
                           heading: 142.19,
-                          position : Cesium.Cartesian3.fromDegrees(127.7718912, 26.2857332),
+                          position : Cesium.Cartesian3.fromDegrees(127.7718912, 26.2857332,300),
                           type: 'noise',
                           point : {
                             color : Cesium.Color.RED.withAlpha(0.4),
-                            pixelSize : 20,
+                            pixelSize : pointsize,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                           });
@@ -125,11 +141,11 @@
                           name_en : 'recorded 10:40 January 5, 2016 at Kaneku',
                           file : '160105_kaneku_kodomo.mp3',
                           heading: 259.47,
-                          position : Cesium.Cartesian3.fromDegrees(127.7420361, 26.3547976),
+                          position : Cesium.Cartesian3.fromDegrees(127.7420361, 26.3547976,300),
                           type: 'noise',
                           point : {
                             color : Cesium.Color.RED.withAlpha(0.4),
-                            pixelSize : 20,
+                            pixelSize : pointsize,
                                translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                            }
                           });
@@ -140,11 +156,11 @@
                                 name_en : 'recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22',
                                 file : '160105_ueojana_osprey.mp3',
                                 heading: 107.43,
-                                position : Cesium.Cartesian3.fromDegrees(127.7402643, 26.2629626),
+                                position : Cesium.Cartesian3.fromDegrees(127.7402643, 26.2629626,300),
                                 type: 'noise',
                                 point : {
                                   color : Cesium.Color.RED.withAlpha(0.4),
-                                  pixelSize : 20,
+                                  pixelSize : pointsize,
                                      translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                                  }
                           });
@@ -154,11 +170,11 @@
                                 name_en : 'recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey',
                                 file : '160809_arakawa_zuku_osprey.mp3',
                                 heading: 215.29,
-                                position : Cesium.Cartesian3.fromDegrees(128.242844, 26.6799939),
+                                position : Cesium.Cartesian3.fromDegrees(128.242844, 26.6799939,300),
                                 type: 'noise',
                                 point : {
                                   color : Cesium.Color.RED.withAlpha(0.4),
-                                  pixelSize : 20,
+                                  pixelSize : pointsize,
                                      translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
                                  }
                           });
@@ -212,6 +228,7 @@
       $("#waveform").show();
       wavesurfer.load('/audio/'+ photoBillBoard.id.file);
       wavesurfer.on('ready', function () {
+        console.log("ready to play");
         wavesurfer.play();
       });
 

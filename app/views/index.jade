@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     title OKINAWA NOISE MAP
-    meta(name='viewport', content='width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no')
+    meta(name='viewport', content=' width=width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no')
     meta(charset='UTF-8')
     meta(content='IE=edge', http-equiv='X-UA-Compatible')
     meta(name='description', content='OKINAWA NOISE MAP（オキナワ・ノイズ・マップ）は、フィールド・レコーディングされた沖縄基地周辺の騒音をリアルに地図上にマッピングし、そこに暮らす人々の視点から擬似体験します。')
@@ -17,60 +17,81 @@ html
     meta(property='og:locale:alternate', content='ja')
     link(rel='stylesheet', href='cesium/Widgets/widgets.css')
     link(rel='stylesheet', href='/css/bootstrap.min.css')
-    link(rel='stylesheet', href='/css/colorbox.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
     link(rel='stylesheet', href='/css/style.css')
   body
+
     #intro
       #toptitle
         h1 OKINAWA NOISE MAP
-      #desc1
-        h1.percent 0.6%
-        br
-        p.desc_p Okinawa Prefecture covers only 0.6% of the land in Japan.
-        p.desc_p 沖縄県の面積は日本の国土のわずか0.6%です.
-      #desc2
-        h1.percent 74%
-        br
-        p.desc_p But 74% of U.S. military facilities in Japan are in Okinawa.
-        p.desc_p しかし、日本の米軍関連施設の74%は沖縄にあります.
       #desc3
         h1.percent Listen
     #head
       h3.head_logo OKINAWA NOISE MAP
       .foot-content
-        a.about About
+        // Button trigger modal
+        button.about.btn.btn-link(type='button', data-toggle='modal', data-target='#myModal')
+          | About
       .foot-content
         a('href'='http://www.facebook.com/share.php?u=http://okinawa.noisemap.jp', 'onclick'="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;")
-          i('class'="fa fa-facebook-official", 'aria-hidden'="true")
+          i('class'="i-about fa fa-facebook-official", 'aria-hidden'="true")
       .foot-content
         a(href='http://twitter.com/share?count=horizontal&original_referer=http://okinawa.noisemap.jp&text=OKINAWA NOISE MAP&', onclick="window.open(this.href, 'TWwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;")
-          i('class'="fa fa-twitter-square", 'aria-hidden'="true")
+          i('class'="i-about fa fa-twitter-square", 'aria-hidden'="true")
       .foot-content
         a(href='https://plus.google.com/share?url=http://okinawa.noisemap.jp', onclick="window.open(this.href, 'Gwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;")
-          i('class'="fa fa-google-plus-square", 'aria-hidden'="true")
+          i('class'="i-about fa fa-google-plus-square", 'aria-hidden'="true")
       .foot-content
         a(href='mailto:okinawa.noisemap@gmail.com')
-          i.fa.fa-envelope-square(aria-hidden='true')
+          i.i-about.fa.fa-envelope-square(aria-hidden='true')
     #cesium.cesium
-
     #waveform
       #wavedesc
       #wavedesc_en
-      button.btn.btn-default.btn-return.btn-sm << back
+      button.btn.btn-link.btn-return << back to map
     #sv
-
     #foot
       .foot-desc
         p
           | Click red points. Headphones recommended.
           br
           | 赤いポイントをクリックします. ヘッドフォンの使用をおすすめします.
+    // Modal
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h3#myModalLabel.modal-title OKINAWA NOISE MAP
+          .modal-body
+            p('style'='')
+              | OKINAWA NOISE MAP（オキナワ・ノイズ・マップ）は、フィールド・レコーディングされた沖縄基地周辺の騒音をリアルに地図上にマッピングし、そこに暮らす人々の視点から擬似体験します。
+            hr
+            #about_member
+              p
+                b - Direction, Field Recording, Sound Editing -
+                br
+                |    前林明次｜Akitsugu Maebayashi
+              br
+              p
+                b - Web Design & Programming -
+                br
+                |    松野峻也｜Shunya Matsuno
+              br
+              p
+                b - Field Recording Cooperation, U.S. Bases Mapping -
+                br
+                |    具志堅裕介｜Yusuke Gushiken
+              #about_foot
+          .modal-footer
+            p copyright &copy; 2016 - OKINAWA NOISE MAP
 
     script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDB6eGK2LO6h_YT8OSFU_qpDXL2Q6i-vSg&callback=initMap')
     script(src='cesium/Cesium.js')
     script(src='/js/jquery-2.2.1.min.js')
     script(src='/js/jquery.colorbox-min.js')
+    script(src='/js/bootstrap.min.js')
     script(src='/js/velocity.min.js')
     script(src='/js/two.min.js')
     script(src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js")
