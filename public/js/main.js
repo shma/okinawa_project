@@ -218,7 +218,7 @@
     viewPointsArray[5] = new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）", 26.3539902, 127.7434518, 241.63, 5, 0);
     viewPointsArray[6] = new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）", 26.2631028, 127.7400556, 120.43, 5, 0); // OK
     viewPointsArray[7] = new viewPoints("2016年8月9日19:23録音、高江、MV-22 オスプレイ", 26.6799013, 128.2426576, 215.29, 5, 0); // OK
-    viewPointsArray[8] = new viewPoints("2017年3月30日15:40録音、砂辺、戦闘機", 26.6799013, 128.2426576, 215.29, 5, 0); // OK
+    viewPointsArray[8] = new viewPoints("2017年3月30日15:40録音、砂辺、戦闘機", 26.3334472, 127.7453168, 215.29, 5, 0); // OK
 
     function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
         this.label = _label;
