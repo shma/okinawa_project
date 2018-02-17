@@ -139,7 +139,7 @@ svg {
     left: 0;
     right: 0;
     margin: auto;
-    z-index: 999;
+    z-index: 900;
 }
 
 #wavedesc {
@@ -262,7 +262,7 @@ button.cesium-infoBox-camera {
         left: 0;
         right: 0;
         margin: auto;
-        z-index: 999;
+        z-index: 900;
     }
     #wavedesc {
         color: #fff;

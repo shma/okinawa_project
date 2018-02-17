@@ -11,7 +11,7 @@ var config = {
     port: 3000,
     db: 'okinawa-development',
     username: 'root',
-    password: ''
+    password: 'Peace0721'
   },
 
   test: {
