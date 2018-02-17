@@ -3,7 +3,7 @@ html
   head
     meta(charset='utf-8')
     title OKINAWA NOISE MAP
-    meta(name='viewport', content=' width=width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no')
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     meta(charset='UTF-8')
     meta(content='IE=edge', http-equiv='X-UA-Compatible')
     meta(name='description', content='OKINAWA NOISE MAP（オキナワ・ノイズ・マップ）は、フィールド・レコーディングされた沖縄基地周辺の騒音をリアルに地図上にマッピングし、そこに暮らす人々の視点から擬似体験します。')
@@ -15,23 +15,43 @@ html
     meta(property='og:site_name', content='OKINAWA NOISE MAP')
     meta(property='og:description', content='OKINAWA NOISE MAP（オキナワ・ノイズ・マップ）は、フィールド・レコーディングされた沖縄基地周辺の騒音をリアルに地図上にマッピングし、そこに暮らす人々の視点から擬似体験します。')
     meta(property='og:locale:alternate', content='ja')
+    link(rel='stylesheet', href='/css/reset.css')
     link(rel='stylesheet', href='cesium/Widgets/widgets.css')
-    link(rel='stylesheet', href='/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
-    link(rel='stylesheet', href='/css/style.css')
+    link(rel='stylesheet', href='/css/style-min.css')
   body
 
     #intro
       #toptitle
         h1 OKINAWA NOISE MAP
       #desc3
-        h1.percent Listen
+        h1 Listen
+    #about
+      .about-content
+        p('style'='')
+            | OKINAWA NOISE MAP（オキナワ・ノイズ・マップ）は、フィールド・レコーディングされた沖縄基地周辺の騒音をリアルに地図上にマッピングし、そこに暮らす人々の視点から擬似体験します。
+            hr
+            #about_member
+              p
+                .role - Direction, Field Recording, Sound Editing
+                br
+                |    前林明次｜Akitsugu Maebayashi
+                br
+              p
+                .role - Web Design & Programming
+                br
+                |    松野峻也｜Shunya Matsuno
+                br
+              p
+                .role - Field Recording Cooperation, U.S. Bases Mapping
+                br
+                |    具志堅裕介｜Yusuke Gushiken
+              #about_foot
+                p copyright &copy; 2016 - OKINAWA NOISE MAP
     #head
       h3.head_logo OKINAWA NOISE MAP
       .foot-content
-        // Button trigger modal
-        button.about.btn.btn-link(type='button', data-toggle='modal', data-target='#myModal')
-          | About
+        a.about('href'="#") About
       .foot-content
         a('href'='http://www.facebook.com/share.php?u=http://okinawa.noisemap.jp', 'onclick'="window.open(this.href, 'FBwindow', 'width=650, height=450, menubar=no, toolbar=no, scrollbars=yes'); return false;")
           i('class'="i-about fa fa-facebook-official", 'aria-hidden'="true")
@@ -48,54 +68,20 @@ html
     #waveform
       #wavedesc
       #wavedesc_en
-      button.btn.btn-link.btn-return << back to map
+      a.btn.btn-link.btn-play(href="#") Play
+      a.btn.btn-link.btn-return(href="#") Back to map
     #sv
     #foot
       .foot-desc
-        p
-          | Click red points. Headphones recommended.
-          br
-          | 赤いポイントをクリックします. ヘッドフォンの使用をおすすめします.
-    // Modal
-    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
-      .modal-dialog(role='document')
-        .modal-content
-          .modal-header
-            button.close(type='button', data-dismiss='modal', aria-label='Close')
-              span(aria-hidden='true') ×
-            h3#myModalLabel.modal-title OKINAWA NOISE MAP
-          .modal-body
-            p('style'='')
-              | OKINAWA NOISE MAP（オキナワ・ノイズ・マップ）は、フィールド・レコーディングされた沖縄基地周辺の騒音をリアルに地図上にマッピングし、そこに暮らす人々の視点から擬似体験します。
-            hr
-            #about_member
-              p
-                b - Direction, Field Recording, Sound Editing -
-                br
-                |    前林明次｜Akitsugu Maebayashi
-              br
-              p
-                b - Web Design & Programming -
-                br
-                |    松野峻也｜Shunya Matsuno
-              br
-              p
-                b - Field Recording Cooperation, U.S. Bases Mapping -
-                br
-                |    具志堅裕介｜Yusuke Gushiken
-              #about_foot
-          .modal-footer
-            p copyright &copy; 2016 - OKINAWA NOISE MAP
-
-    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDB6eGK2LO6h_YT8OSFU_qpDXL2Q6i-vSg&callback=initMap')
+        p.foot-en Click red points. Headphones recommended.
+        p.foot-ja 赤いポイントをクリックします. ヘッドフォンの使用をおすすめします.
     script(src='cesium/Cesium.js')
     script(src='/js/jquery-2.2.1.min.js')
-    script(src='/js/jquery.colorbox-min.js')
     script(src='/js/bootstrap.min.js')
     script(src='/js/velocity.min.js')
-    script(src='/js/two.min.js')
     script(src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js")
-    script(src='/js/main.js')
+    script(src='/js/main-min.js')
+    script(async='', defer='', src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDB6eGK2LO6h_YT8OSFU_qpDXL2Q6i-vSg&callback=initMap')
     script.
      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

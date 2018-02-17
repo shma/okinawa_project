@@ -1,11 +1,13 @@
-(function() {
-    "use strict";
+"use strict";
 
-    //  $('a.about').colorbox({href:"/about"});
+function initMap() {
     Cesium.BingMapsApi.defaultKey = "Ar0B0yEfBTt6pqUyvlE2ARKYOl7wti2Klk04EVMBZE0mA8B5cKcm4ILrZPi2P2bd"
+    var sv = new google.maps.StreetViewService();
+    var svp = '';
 
-    // Street View上に配置する何か
+    // Street View上に配置するオブジェクト
     $("#waveform").hide();
+    $(".btn-play").hide();
     $(".btn-return").hide();
     var wavesurfer = WaveSurfer.create({
         container: '#waveform',
@@ -14,11 +16,6 @@
         height: 200,
     });
 
-    // Street Viewを設定する変数
-    var sv = new google.maps.StreetViewService();
-    var svp = '';
-
-    // スマホかどうかを判定する
     var getDevice = (function() {
         var ua = navigator.userAgent;
         if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) {
@@ -30,18 +27,10 @@
         }
     })();
 
-    var pointsize = 25;
+    var pointsize = 40;
     if (getDevice == 'sp') {
-        pointsize = 10;
+        pointsize = 20;
     }
-
-    $(function() {
-        $('.cesium-widget-credits').css('display', 'none');
-        $('.cesium-viewer-animationContainer').css('display', 'none');
-        $('.cesium-viewer-timelineContainer').css('display', 'none');
-        $('.cesium-viewer-fullscreenContainer').css('display', 'none');
-        $('.cesium-viewer-toolbar').css('display', 'none');
-    });
 
     var viewer = new Cesium.Viewer("cesium");
     var scene = viewer.scene;
@@ -53,7 +42,6 @@
     $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 2000 })
         .velocity({
             complete: function() {
-
                 $("#intro").fadeOut();
 
                 viewer.camera.flyTo({
@@ -75,10 +63,9 @@
                                         pitch: Cesium.Math.toRadians(-50.0)
                                     },
                                     complete: function() {
-                                        //$("#intro").fadeOut();
                                         viewer.dataSources.add(Cesium.GeoJsonDataSource.load('/json/base.json', {
-                                            stroke: Cesium.Color.AQUA,
-                                            fill: Cesium.Color.AQUA.withAlpha(0.4),
+                                            stroke: Cesium.Color.BLACK,
+                                            fill: Cesium.Color.BLACK.withAlpha(0.7),
                                             strokeWidth: 1
                                         }));
 
@@ -187,7 +174,7 @@
                                                             name: '2017年3月30日15:40録音、砂辺、戦闘機',
                                                             name_en: 'recorded 15:40 March 30th 2017 at Sunabe, Fighters',
                                                             file: '170330_sunabepark.mp3',
-                                                            heading: 215.29,
+                                                            heading: 35.32,
                                                             position: Cesium.Cartesian3.fromDegrees(127.7453168, 26.3334472, 300),
                                                             type: 'noise',
                                                             point: {
@@ -207,18 +194,16 @@
                 });
             }
         });
-
     // 色んな地点を登録
     var viewPointsArray = [];
-    viewPointsArray[0] = new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858, 127.7739129, 190.6, 5, 0); // OK
-    viewPointsArray[1] = new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817, 127.7403736, 155.77, 5, 0);
-    // viewPointsArray[2]=new viewPoints("オキナワ・サウンドデータ３（新城・ヘリ）", 26.2853835,127.7721311,-140.0,5,0);
-    viewPointsArray[3] = new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498, 127.7717827, 142.19, 5, 0);
-    viewPointsArray[4] = new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）", 26.3546692, 127.7411702, 259.47, 5, 0);
-    viewPointsArray[5] = new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）", 26.3539902, 127.7434518, 241.63, 5, 0);
-    viewPointsArray[6] = new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）", 26.2631028, 127.7400556, 120.43, 5, 0); // OK
-    viewPointsArray[7] = new viewPoints("2016年8月9日19:23録音、高江、MV-22 オスプレイ", 26.6799013, 128.2426576, 215.29, 5, 0); // OK
-    viewPointsArray[8] = new viewPoints("2017年3月30日15:40録音、砂辺、戦闘機", 26.3334472, 127.7453168, 35.32, 5, 0); // OK
+    viewPointsArray[0] = new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858, 127.7739129, 0, 5, 0);
+    viewPointsArray[1] = new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817, 127.7403736, 0, 5, 0);
+    viewPointsArray[3] = new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498, 127.7717827, 0, 5, 0);
+    viewPointsArray[4] = new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）", 26.3546692, 127.7411702, 0, 5, 0);
+    viewPointsArray[5] = new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）", 26.3539902, 127.7434518, 0, 5, 0);
+    viewPointsArray[6] = new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）", 26.2631028, 127.7400556, 0, 5, 0);
+    viewPointsArray[7] = new viewPoints("2016年8月9日19:23録音、高江、MV-22 オスプレイ", 26.6799013, 128.2426576, 0, 5, 0);
+    viewPointsArray[8] = new viewPoints("2017年3月30日15:40録音、砂辺、戦闘機", 26.3334472, 127.7453168, 0, 5, 0);
 
     function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
         this.label = _label;
@@ -241,7 +226,6 @@
         var pitch = photoBillBoard.id.pitch;
         var roll = photoBillBoard.id.roll;
         var photoUrl = photoBillBoard.id.photoUrl;
-        //var description = photoBillBoard.id._description._value;
         var fov = 2 * photoBillBoard.id.fov;
 
         streetView(heading);
@@ -250,13 +234,13 @@
         $("#waveform").show();
         wavesurfer.load('/audio/' + photoBillBoard.id.file);
         wavesurfer.on('ready', function() {
-            console.log("ready to play");
             wavesurfer.play();
         });
 
         wavesurfer.on('finish', function() {
             $("#waveform").hide();
             $(".btn-return").hide();
+            $(".btn-play").hide();
 
             $('#foot').fadeIn("slow");
             $('#cesium').fadeIn("slow");
@@ -270,6 +254,9 @@
         });
 
         $(".btn-return").show();
+        if (getDevice == 'sp') {
+            $(".btn-play").show();
+        }
     }
 
     var handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
@@ -277,12 +264,14 @@
         function(movement) {
             var billBoard = scene.pick(movement.position);
 
+            if (billBoard == undefined) {
+                return
+            }
 
             if (billBoard.id.type == "noise") {
                 var position = billBoard.id.position._value;
                 $('.cesium-infoBox').css('display', 'none');
 
-                console.log("pitch : " + viewPointsArray[billBoard.id.id].pitch);
                 viewer.camera.flyTo({
                     destination: Cesium.Cartesian3.fromDegrees(viewPointsArray[billBoard.id.id].lng, viewPointsArray[billBoard.id.id].lat, 1000.0),
                     complete: function() {
@@ -307,12 +296,8 @@
     var streetViewPos = { x: 0, y: 0, x: 0 };
     var streetViewHeading = 0;
 
-    // 上に向くカウントアップ
-    var c = 0;
-    var sv_pitch = 0;
 
     function streetView(heading) {
-
         streetViewDiv.innerHTML = null;
         var cart = Cesium.Ellipsoid.WGS84.cartesianToCartographic(streetViewPos);
         var latlng = new google.maps.LatLng(Cesium.Math.toDegrees(cart.latitude), Cesium.Math.toDegrees(cart.longitude));
@@ -348,29 +333,11 @@
                         });
                     svp.setOptions(streetViewOptions);
                     svp.setVisible(true);
-                    c = 0;
-                    sv_pitch = 0;
                 }
             }
         );
 
-
-        var up = function() {
-            if (sv_pitch < 30) {
-                sv_pitch = sv_pitch + 5;
-                svp.setOptions({
-                    pov: {
-                        heading: 140.11,
-                        pitch: sv_pitch,
-                        zoom: 1
-                    }
-                });
-            }
-        }
-
         $(".btn-return").on('click', function() {
-            c = 0;
-            clearInterval(up);
             $("#waveform").hide();
             $(".btn-return").hide();
 
@@ -384,5 +351,18 @@
                 }
             });
         });
+
+        $(".btn-play").on('click', function() {
+            wavesurfer.play();
+        });
     }
-}());
+    $(document).on('click', '.about', function() {
+        $("#about").fadeIn();
+        return false;
+    });
+
+    $("#about").on('click', function() {
+        $("#about").fadeOut();
+        return false;
+    });
+}
