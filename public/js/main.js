@@ -39,6 +39,18 @@ function initMap() {
     var normalImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[0];
     viewer.baseLayerPicker.viewModel.selectedImagery = stamenTonerImagery;
 
+    //データが入ります。
+    var viewPointsArray = [];
+    viewPointsArray[0] = new viewPoints("2012年11月27日18:10録音, 嘉手納, F15戦闘機", "recorded 13:30 November 27 2012 at Kadena, F15", "2012_kadena_f15_2.mp3", 26.3677948, 127.7739129, 190.6, 5, 300)
+    viewPointsArray[1] = new viewPoints("2012年11月28日16:00録音, 森川公園", "recorded 16:00 November 28, 2012 at Morikawa Park", "2012_morikawa_ch46.mp3", 26.2713147, 127.7407946, 155.77, 5, 300)
+    viewPointsArray[2] = new viewPoints("2015年11月24日18:15録音, 新城, オスプレイ", "recorded 18:15 November 24, 2015 at Arashiro, MV22", "151124_arashiro_osprey.mp3", 26.2857332, 127.7718912, 142.19, 5, 300)
+    viewPointsArray[3] = new viewPoints("2016年1月5日10:40録音, 兼久", "recorded 10:40 January 5, 2016 at Kaneku", "160105_kaneku_kodomo.mp3", 26.3547976, 127.7420361, 259.47, 5, 300)
+    viewPointsArray[4] = new viewPoints("2016年1月5日18:10録音, 上大謝名, オスプレイ", "recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22", "160105_ueojana_osprey.mp3", 26.2629626, 127.7402643, 107.43, 5, 300)
+    viewPointsArray[5] = new viewPoints("2016年8月9日19:23録音、高江、MV-22 オスプレイ", "recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey", "160809_arakawa_zuku_osprey.mp3", 26.6799939, 128.242844, 215.29, 5, 300)
+    viewPointsArray[6] = new viewPoints("2017年3月30日15:40録音、砂辺、戦闘機", "recorded 15:40 March 30th 2017 at Sunabe, Fighters", "170330_sunabepark.mp3", 26.3334472, 127.7453168, 35.32, 5, 300)
+
+
+
     $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 2000 })
         .velocity({
             complete: function() {
@@ -79,110 +91,26 @@ function initMap() {
                                             .velocity({
                                                 complete: function() {
                                                     $("#intro").fadeOut();
-
                                                     $("#head").velocity("fadeIn", { duration: 1500 });
                                                     $("#foot").velocity("fadeIn", { duration: 1500 });
                                                     setTimeout(function() {
-                                                        viewer.entities.add({
-                                                            id: 0,
-                                                            name: '2012年11月27日18:10録音, 嘉手納, F15戦闘機',
-                                                            name_en: 'recorded 13:30 November 27 2012 at Kadena, F15',
-                                                            file: '2012_kadena_f15_2.mp3',
-                                                            heading: 190.6,
-                                                            position: Cesium.Cartesian3.fromDegrees(127.7739129, 26.3677948, 300),
-                                                            type: 'noise',
-                                                            point: {
-                                                                color: Cesium.Color.RED.withAlpha(0.4),
-                                                                pixelSize: pointsize,
-                                                                translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                                                            }
-                                                        });
-                                                        viewer.entities.add({
-                                                            id: 1,
-                                                            name: '2012年11月28日16:00録音, 森川公園',
-                                                            name_en: 'recorded 16:00 November 28, 2012 at Morikawa Park',
-                                                            file: '2012_morikawa_ch46.mp3',
-                                                            heading: 155.77,
-                                                            position: Cesium.Cartesian3.fromDegrees(127.7407946, 26.2713147, 300),
-                                                            type: 'noise',
-                                                            point: {
-                                                                color: Cesium.Color.RED.withAlpha(0.4),
-                                                                pixelSize: pointsize,
-                                                                translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                                                            }
-                                                        });
-
-                                                        viewer.entities.add({
-                                                            id: 3,
-                                                            name: '2015年11月24日18:15録音, 新城, オスプレイ',
-                                                            name_en: 'recorded 18:15 November 24, 2015 at Arashiro, MV22',
-                                                            file: '151124_arashiro_osprey.mp3',
-                                                            heading: 142.19,
-                                                            position: Cesium.Cartesian3.fromDegrees(127.7718912, 26.2857332, 300),
-                                                            type: 'noise',
-                                                            point: {
-                                                                color: Cesium.Color.RED.withAlpha(0.4),
-                                                                pixelSize: pointsize,
-                                                                translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                                                            }
-                                                        });
-                                                        viewer.entities.add({
-                                                            id: 4,
-                                                            name: '2016年1月5日10:40録音, 兼久',
-                                                            name_en: 'recorded 10:40 January 5, 2016 at Kaneku',
-                                                            file: '160105_kaneku_kodomo.mp3',
-                                                            heading: 259.47,
-                                                            position: Cesium.Cartesian3.fromDegrees(127.7420361, 26.3547976, 300),
-                                                            type: 'noise',
-                                                            point: {
-                                                                color: Cesium.Color.RED.withAlpha(0.4),
-                                                                pixelSize: pointsize,
-                                                                translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                                                            }
-                                                        });
-
-                                                        viewer.entities.add({
-                                                            id: 6,
-                                                            name: '2016年1月5日18:10録音, 上大謝名, オスプレイ',
-                                                            name_en: 'recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22',
-                                                            file: '160105_ueojana_osprey.mp3',
-                                                            heading: 107.43,
-                                                            position: Cesium.Cartesian3.fromDegrees(127.7402643, 26.2629626, 300),
-                                                            type: 'noise',
-                                                            point: {
-                                                                color: Cesium.Color.RED.withAlpha(0.4),
-                                                                pixelSize: pointsize,
-                                                                translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                                                            }
-                                                        });
-                                                        viewer.entities.add({
-                                                            id: 7,
-                                                            name: '2016年8月9日19:23録音、高江、MV-22 オスプレイ',
-                                                            name_en: 'recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey',
-                                                            file: '160809_arakawa_zuku_osprey.mp3',
-                                                            heading: 215.29,
-                                                            position: Cesium.Cartesian3.fromDegrees(128.242844, 26.6799939, 300),
-                                                            type: 'noise',
-                                                            point: {
-                                                                color: Cesium.Color.RED.withAlpha(0.4),
-                                                                pixelSize: pointsize,
-                                                                translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                                                            }
-                                                        });
-                                                        viewer.entities.add({
-                                                            id: 8,
-                                                            name: '2017年3月30日15:40録音、砂辺、戦闘機',
-                                                            name_en: 'recorded 15:40 March 30th 2017 at Sunabe, Fighters',
-                                                            file: '170330_sunabepark.mp3',
-                                                            heading: 35.32,
-                                                            position: Cesium.Cartesian3.fromDegrees(127.7453168, 26.3334472, 300),
-                                                            type: 'noise',
-                                                            point: {
-                                                                color: Cesium.Color.RED.withAlpha(0.4),
-                                                                pixelSize: pointsize,
-                                                                translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
-                                                            }
-                                                        });
+                                                        // 地点を登録
+                                                        viewPointsArray.map(function(value, index) {
+                                                            viewer.entities.add({
+                                                                id: index,
+                                                                name: value.label,
+                                                                name_en: value.label_en,
+                                                                file: value.mp3,
+                                                                heading: value.heading,
+                                                                position: Cesium.Cartesian3.fromDegrees(value.lng, value.lat, value.range),
+                                                                type: 'noise',
+                                                                point: {
+                                                                    color: Cesium.Color.RED.withAlpha(0.4),
+                                                                    pixelSize: pointsize,
+                                                                    translucencyByDistance: new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e7, 0.2)
+                                                                }
+                                                            });
+                                                        })
                                                     }, 1000);
                                                 }
                                             });
@@ -194,19 +122,11 @@ function initMap() {
                 });
             }
         });
-    // 色んな地点を登録
-    var viewPointsArray = [];
-    viewPointsArray[0] = new viewPoints("オキナワ・サウンドデータ1（道の駅かでな）", 26.3677858, 127.7739129, 0, 5, 0);
-    viewPointsArray[1] = new viewPoints("オキナワ・サウンドデータ２（森川公園）", 26.2704817, 127.7403736, 0, 5, 0);
-    viewPointsArray[3] = new viewPoints("オキナワ・サウンドデータ４（新城・オスプレイMV22）", 26.2856498, 127.7717827, 0, 5, 0);
-    viewPointsArray[4] = new viewPoints("オキナワ・サウンドデータ５（砂辺、子供１）", 26.3546692, 127.7411702, 0, 5, 0);
-    viewPointsArray[5] = new viewPoints("オキナワ・サウンドデータ６（砂辺、子供２）", 26.3539902, 127.7434518, 0, 5, 0);
-    viewPointsArray[6] = new viewPoints("オキナワ・サウンドデータ７（上大謝名、オスプレイMV22）", 26.2631028, 127.7400556, 0, 5, 0);
-    viewPointsArray[7] = new viewPoints("2016年8月9日19:23録音、高江、MV-22 オスプレイ", 26.6799013, 128.2426576, 0, 5, 0);
-    viewPointsArray[8] = new viewPoints("2017年3月30日15:40録音、砂辺、戦闘機", 26.3334472, 127.7453168, 0, 5, 0);
 
-    function viewPoints(_label, _lat, _lng, _heading, _pitch, _range) {
+    function viewPoints(_label, _label_en, _mp3, _lat, _lng, _heading, _pitch, _range) {
         this.label = _label;
+        this.label_en = _label_en;
+        this.mp3 = _mp3;
         this.lat = _lat;
         this.lng = _lng;
         this.heading = _heading;
