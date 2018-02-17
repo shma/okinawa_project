@@ -41,15 +41,13 @@ function initMap() {
 
     //データが入ります。
     var viewPointsArray = [];
-    viewPointsArray[0] = new viewPoints("2012年11月27日18:10録音, 嘉手納, F15戦闘機", "recorded 13:30 November 27 2012 at Kadena, F15", "2012_kadena_f15_2.mp3", 26.3677948, 127.7739129, 190.6, 5, 300)
-    viewPointsArray[1] = new viewPoints("2012年11月28日16:00録音, 森川公園", "recorded 16:00 November 28, 2012 at Morikawa Park", "2012_morikawa_ch46.mp3", 26.2713147, 127.7407946, 155.77, 5, 300)
-    viewPointsArray[2] = new viewPoints("2015年11月24日18:15録音, 新城, オスプレイ", "recorded 18:15 November 24, 2015 at Arashiro, MV22", "151124_arashiro_osprey.mp3", 26.2857332, 127.7718912, 142.19, 5, 300)
-    viewPointsArray[3] = new viewPoints("2016年1月5日10:40録音, 兼久", "recorded 10:40 January 5, 2016 at Kaneku", "160105_kaneku_kodomo.mp3", 26.3547976, 127.7420361, 259.47, 5, 300)
-    viewPointsArray[4] = new viewPoints("2016年1月5日18:10録音, 上大謝名, オスプレイ", "recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22", "160105_ueojana_osprey.mp3", 26.2629626, 127.7402643, 107.43, 5, 300)
-    viewPointsArray[5] = new viewPoints("2016年8月9日19:23録音、高江、MV-22 オスプレイ", "recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey", "160809_arakawa_zuku_osprey.mp3", 26.6799939, 128.242844, 215.29, 5, 300)
-    viewPointsArray[6] = new viewPoints("2017年3月30日15:40録音、砂辺、戦闘機", "recorded 15:40 March 30th 2017 at Sunabe, Fighters", "170330_sunabepark.mp3", 26.3334472, 127.7453168, 35.32, 5, 300)
-
-
+    viewPointsArray[0] = new viewPoints("2012年11月27日18:10録音, 嘉手納, F15戦闘機", "recorded 13:30 November 27 2012 at Kadena, F15", "2012_kadena_f15_2.mp3", 26.3677948, 127.7739129, 190.6, 5, 10)
+    viewPointsArray[1] = new viewPoints("2012年11月28日16:00録音, 森川公園", "recorded 16:00 November 28, 2012 at Morikawa Park", "2012_morikawa_ch46.mp3", 26.2713147, 127.7407946, 155.77, 5, 10)
+    viewPointsArray[2] = new viewPoints("2015年11月24日18:15録音, 新城, オスプレイ", "recorded 18:15 November 24, 2015 at Arashiro, MV22", "151124_arashiro_osprey.mp3", 26.2857332, 127.7718912, 142.19, 5, 10)
+    viewPointsArray[3] = new viewPoints("2016年1月5日10:40録音, 兼久", "recorded 10:40 January 5, 2016 at Kaneku", "160105_kaneku_kodomo.mp3", 26.3547976, 127.7420361, 259.47, 5, 10)
+    viewPointsArray[4] = new viewPoints("2016年1月5日18:10録音, 上大謝名, オスプレイ", "recorded 18:10 January 5, 2016 at Ue-Ojana, MV-22", "160105_ueojana_osprey.mp3", 26.2629626, 127.7402643, 107.43, 5, 10)
+    viewPointsArray[5] = new viewPoints("2016年8月9日19:23録音、高江、MV-22 オスプレイ", "recorded 19:23 August 9th 2016 at Takae, MV-22 Osprey", "160809_arakawa_zuku_osprey.mp3", 26.6799939, 128.242844, 215.29, 5, 10)
+    viewPointsArray[6] = new viewPoints("2017年3月30日15:40録音、砂辺、戦闘機", "recorded 15:40 March 30th 2017 at Sunabe, Fighters", "170330_sunabepark.mp3", 26.3334472, 127.7453168, 35.32, 5, 10)
 
     $("#toptitle").delay(0).velocity("fadeIn", { duration: 1000 }).velocity("fadeOut", { duration: 2000 })
         .velocity({
